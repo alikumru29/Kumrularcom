@@ -4,7 +4,7 @@ import { ProductService } from "./services/productService";
 import { getProducts } from "./controllers/productController";
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());

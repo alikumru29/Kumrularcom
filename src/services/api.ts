@@ -1,6 +1,6 @@
 import { Product } from "../types/product";
 
-const API_URL = "http://localhost:3001/api";
+const API_URL = "http://localhost:4000/api";
 
 export class ApiService {
   private static instance: ApiService;
