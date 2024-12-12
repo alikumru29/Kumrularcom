@@ -1,6 +1,6 @@
 import { Product, TechnicalDetail } from "../types/product.js";
 import { DOMParser } from "@xmldom/xmldom";
-import { turkishToAscii } from "../utils/turkishUtils";
+import { turkishToAscii } from "../utils/turkishUtils.js";
 
 export class XmlParser {
   private static parseNode(node: Element, tagName: string): string {

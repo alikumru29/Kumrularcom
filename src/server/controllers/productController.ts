@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProductService } from "../services/productService";
+import { ProductService } from "../services/productService.js";
 
 export async function getProducts(_req: Request, res: Response) {
   try {

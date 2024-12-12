@@ -1,7 +1,7 @@
-import { Product } from "../../types/product";
-import { CacheService } from "./cacheService";
-import { XmlService } from "./xmlService";
-import { ProductUtils } from "../utils/productUtils";
+import { Product } from "../../types/product.js";
+import { CacheService } from "./cacheService.js";
+import { XmlService } from "./xmlService.js";
+import { ProductUtils } from "../utils/productUtils.js";
 
 export class ProductService {
   private static instance: ProductService;

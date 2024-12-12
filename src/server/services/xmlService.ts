@@ -1,5 +1,5 @@
-import { Product } from "../../types/product";
-import { XmlParser } from "../utils/xmlParser";
+import { Product } from "../../types/product.js";
+import { XmlParser } from "../utils/xmlParser.js";
 import fetch from "node-fetch";
 
 export class XmlService {

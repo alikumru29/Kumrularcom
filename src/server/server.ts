@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { ProductService } from "./services/productService";
-import { getProducts } from "./controllers/productController";
+import { ProductService } from "./services/productService.js";
+import { getProducts } from "./controllers/productController.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
