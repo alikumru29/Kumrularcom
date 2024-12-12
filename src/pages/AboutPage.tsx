@@ -1,4 +1,3 @@
-import React from "react";
 import SEOHead from "../components/SEOHead";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import PageHeader from "../components/PageHeader";

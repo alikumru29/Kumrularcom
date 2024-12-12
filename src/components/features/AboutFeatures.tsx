@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Award, Users, Clock, Truck, Heart, Star } from "lucide-react";
 

@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
-import { ProductService } from "./productService.js";
-import { getProducts } from "./productController.js";
+import { ProductService } from "./services/productService";
+import { getProducts } from "./controllers/productController";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());

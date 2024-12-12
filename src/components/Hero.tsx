@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import ResponsiveContainer from "./ResponsiveContainer";
@@ -36,18 +35,6 @@ export default function Hero() {
 
     return () => clearInterval(interval);
   }, [isAnimating]);
-
-  const handlePrevSlide = () => {
-    if (!isAnimating) {
-      setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-    }
-  };
-
-  const handleNextSlide = () => {
-    if (!isAnimating) {
-      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }
-  };
 
   return (
     <div className="relative h-screen overflow-hidden">

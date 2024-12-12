@@ -1,8 +1,7 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useProducts } from "../hooks/useProducts";
-import { ChevronLeft, ChevronRight, Phone, Mail } from "lucide-react";
+import { ChevronRight, Phone, Mail } from "lucide-react";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ImageSlider from "../components/ImageSlider";

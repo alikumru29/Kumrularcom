@@ -1,7 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Mail } from 'lucide-react';
-import ResponsiveContainer from './ResponsiveContainer';
+import { motion } from "framer-motion";
+import { Phone, Mail } from "lucide-react";
+import ResponsiveContainer from "./ResponsiveContainer";
 
 export default function ContactCTA() {
   return (
@@ -14,11 +13,14 @@ export default function ContactCTA() {
           className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl overflow-hidden shadow-xl"
         >
           <div className="p-12 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Daha Fazla Bilgi Almak İster misiniz?</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              Daha Fazla Bilgi Almak İster misiniz?
+            </h2>
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Uzman ekibimiz size en uygun çözümü sunmak için hazır. Hemen iletişime geçin!
+              Uzman ekibimiz size en uygun çözümü sunmak için hazır. Hemen
+              iletişime geçin!
             </p>
-            
+
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
                 href="tel:+902163984764"

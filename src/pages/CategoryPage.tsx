@@ -1,5 +1,4 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { categories } from "../data/categories";
 import { Check, ChevronRight, Phone, Mail } from "lucide-react";

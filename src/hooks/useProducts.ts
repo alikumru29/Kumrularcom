@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Product } from '../types/product';
-import { ProductService } from '../services/productService';
-import { useProductFilters } from './useProductFilters';
+import { useState, useEffect } from "react";
+import { Product } from "../types/product";
+import { ApiService } from "../services/api";
+import { useProductFilters } from "./useProductFilters";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -13,11 +13,11 @@ export function useProducts() {
   const [filters, setFilters] = useState({
     brand: [],
     category: [],
-    technicalDetails: {}
+    technicalDetails: {},
   });
 
   const { filterProducts } = useProductFilters();
-  const productService = ProductService.getInstance();
+  const apiService = ApiService.getInstance();
 
   useEffect(() => {
     let mounted = true;
@@ -25,15 +25,15 @@ export function useProducts() {
     const loadProducts = async () => {
       try {
         setLoading(true);
-        const data = await productService.fetchProducts();
+        const data = await apiService.fetchProducts();
         if (mounted) {
           setProducts(data);
           setError(null);
         }
       } catch (err) {
         if (mounted) {
-          setError('Ürünler yüklenirken bir hata oluştu.');
-          console.error('Error loading products:', err);
+          setError("Ürünler yüklenirken bir hata oluştu.");
+          console.error("Error loading products:", err);
         }
       } finally {
         if (mounted) {

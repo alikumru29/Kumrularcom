@@ -1,10 +1,12 @@
-import React from 'react';
-import { MapPin, Phone, Mail } from 'lucide-react';
-import ResponsiveContainer from './ResponsiveContainer';
+import { MapPin, Phone, Mail } from "lucide-react";
+import ResponsiveContainer from "./ResponsiveContainer";
 
 export default function Contact() {
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 to-slate-100" id="iletisim">
+    <section
+      className="py-24 bg-gradient-to-br from-slate-50 to-slate-100"
+      id="iletisim"
+    >
       <ResponsiveContainer>
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gradient mb-6">İletişim</h2>
@@ -12,34 +14,47 @@ export default function Contact() {
             Size en uygun çözümü sunmak için her zaman yanınızdayız
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Contact Info Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <MapPin className="w-8 h-8 mx-auto mb-4 text-primary-500" />
-              <h3 className="text-xl font-semibold mb-2 text-slate-800">Adres</h3>
+              <h3 className="text-xl font-semibold mb-2 text-slate-800">
+                Adres
+              </h3>
               <p className="text-slate-600">
-                Turgutreis Mah. Demokrasi Cad. No:219<br />
+                Turgutreis Mah. Demokrasi Cad. No:219
+                <br />
                 Sultanbeyli, İstanbul
               </p>
             </div>
-            
+
             <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <Phone className="w-8 h-8 mx-auto mb-4 text-primary-500" />
-              <h3 className="text-xl font-semibold mb-2 text-slate-800">Telefon</h3>
+              <h3 className="text-xl font-semibold mb-2 text-slate-800">
+                Telefon
+              </h3>
               <p className="text-slate-600">
-                <a href="tel:+902163984764" className="hover:text-primary-600 transition-colors">
+                <a
+                  href="tel:+902163984764"
+                  className="hover:text-primary-600 transition-colors"
+                >
                   +90 (216) 398 47 64
                 </a>
               </p>
             </div>
-            
+
             <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
               <Mail className="w-8 h-8 mx-auto mb-4 text-primary-500" />
-              <h3 className="text-xl font-semibold mb-2 text-slate-800">E-posta</h3>
+              <h3 className="text-xl font-semibold mb-2 text-slate-800">
+                E-posta
+              </h3>
               <p className="text-slate-600">
-                <a href="mailto:info@kumrular.com" className="hover:text-primary-600 transition-colors">
+                <a
+                  href="mailto:info@kumrular.com"
+                  className="hover:text-primary-600 transition-colors"
+                >
                   info@kumrular.com
                 </a>
               </p>
