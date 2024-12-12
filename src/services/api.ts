@@ -1,7 +1,5 @@
 import { Product } from "../types/product";
 
-const API_URL = "http://localhost:4000/api";
-
 export class ApiService {
   private static instance: ApiService;
 
@@ -16,7 +14,7 @@ export class ApiService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
-      const response = await fetch(`${API_URL}/products`);
+      const response = await fetch("/api/products");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

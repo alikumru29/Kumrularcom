@@ -1,16 +1,25 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { ProductService } from "./services/productService";
 import { getProducts } from "./controllers/productController";
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the client build directory
+app.use(express.static(path.join(process.cwd(), "dist/client")));
+
 // API endpoints
 app.get("/api/products", getProducts);
+
+// Serve index.html for all other routes (SPA)
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(process.cwd(), "dist/client/index.html"));
+});
 
 // Start server and initialize data
 async function startServer() {
