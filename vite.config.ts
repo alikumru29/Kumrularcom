@@ -24,11 +24,14 @@ export default defineConfig({
         main: path.resolve(__dirname, "index.html"),
       },
       output: {
+        // Ensure proper module format
+        format: "es",
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split(".");
           const extType = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            return `assets/images/[name]-[hash][extname]`;
+            const fileName = info[0].split("/").pop();
+            return `assets/images/${fileName}-[hash][extname]`;
           }
           return `assets/[name]-[hash][extname]`;
         },
