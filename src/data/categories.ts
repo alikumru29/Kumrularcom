@@ -1,11 +1,19 @@
 import { Category } from "../types/category";
 
+import seramikHero from "../assets/banner/seramik.jpg";
+import vitfifiyeHero from "../assets/banner/vitrifiye.jpg";
+import banyodolabiHero from "../assets/banner/banyo-mobilyasi.jpg";
+import yikanmaalanlariHero from "../assets/banner/yikanma-alanlari.jpg";
+import armaturHero from "../assets/banner/armatur.jpg";
+import aksesuarHero from "../assets/banner/aksesuar.jpg";
+import yapikimyasallariHero from "../assets/banner/yapi-kimyasallari.jpg";
+
 export const categories: Category[] = [
   {
     id: "seramik",
     title: "Seramik",
     description: "Modern ve klasik tasarımlarla banyonuzu kişiselleştirin",
-    banner: "/src/assets/banner/seramik.jpg",
+    banner: seramikHero,
     subcategories: [
       {
         title: "Duvar Seramikleri",
@@ -47,7 +55,7 @@ export const categories: Category[] = [
     id: "vitrifiye",
     title: "Vitrifiye",
     description: "Kaliteli ve modern vitrifiye ürünleri",
-    banner: "/src/assets/banner/vitrifiye.jpg",
+    banner: vitfifiyeHero,
     subcategories: [
       {
         title: "Lavabolar",
@@ -88,7 +96,7 @@ export const categories: Category[] = [
     id: "banyo-mobilyalari",
     title: "Banyo Mobilyaları",
     description: "Fonksiyonel ve şık banyo mobilyaları",
-    banner: "/src/assets/banner/banyo-mobilyasi.jpg",
+    banner: banyodolabiHero,
     subcategories: [
       {
         title: "Dolap Sistemleri",
@@ -129,7 +137,7 @@ export const categories: Category[] = [
     id: "yikanma-alanlari",
     title: "Yıkanma Alanları",
     description: "Konforlu ve lüks yıkanma alanları",
-    banner: "/src/assets/banner/yikanma-alanlari.jpg",
+    banner: yikanmaalanlariHero,
     subcategories: [
       {
         title: "Duş Sistemleri",
@@ -170,7 +178,7 @@ export const categories: Category[] = [
     id: "armatur",
     title: "Armatür",
     description: "Modern ve klasik armatür çeşitleri",
-    banner: "/src/assets/banner/armatur.jpg",
+    banner: armaturHero,
     subcategories: [
       {
         title: "Lavabo Armatürleri",
@@ -211,7 +219,7 @@ export const categories: Category[] = [
     id: "aksesuarlar",
     title: "Banyo Aksesuarları",
     description: "Şık ve fonksiyonel banyo aksesuarları",
-    banner: "/src/assets/banner/aksesuar.jpg",
+    banner: aksesuarHero,
     subcategories: [
       {
         title: "Temel Aksesuarlar",
@@ -252,7 +260,7 @@ export const categories: Category[] = [
     id: "construction-chemicals",
     title: "Yapı Kimyasalları",
     description: "Profesyonel yapı kimyasalları",
-    banner: "/src/assets/banner/yapi-kimyasallari.jpg",
+    banner: yapikimyasallariHero,
     subcategories: [
       {
         title: "Yapıştırıcılar",

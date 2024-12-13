@@ -3,20 +3,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import ResponsiveContainer from "./ResponsiveContainer";
 
+import Herobanner1 from "../assets/banner/homebanner.jpg";
+import Herobanner2 from "../assets/banner/homebanner-2.jpg";
+import Herobanner3 from "../assets/banner/homebanner-3.jpg";
+
 const slides = [
   {
-    image: "/src/assets/banner/homebanner.jpg",
+    image: Herobanner1,
     title: "Modern Banyo Tasarımları",
     subtitle:
       "Premium malzemeler ve yenilikçi tasarımlarla banyonuzu sanatsal bir yaşam alanına dönüştürün",
   },
   {
-    image: "/src/assets/banner/homebanner-2.jpg",
+    image: Herobanner2,
     title: "Lüks Vitrifiye Ürünleri",
     subtitle: "En seçkin markaların en yeni koleksiyonları Kumrular Seramik'te",
   },
   {
-    image: "/src/assets/banner/homebanner-3.jpg",
+    image: Herobanner3,
     title: "Profesyonel Çözümler",
     subtitle: "38 yıllık tecrübemizle hayalinizdeki banyoyu tasarlıyoruz",
   },
