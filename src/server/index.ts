@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 import { env } from "./config/env.js";
 import { corsMiddleware } from "./middleware/cors.js";
 import { securityMiddleware } from "./middleware/security.js";
@@ -31,7 +32,7 @@ async function startServer() {
     });
 
     // Error handling middleware
-    app.use((err: any, _req: any, res: any, next: any) => {
+    app.use((err: any, _req: any, res: any, _next: any) => {
       console.error("Error:", err);
       res.status(500).json({ error: "Internal Server Error" });
     });
