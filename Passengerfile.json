@@ -1,8 +1,12 @@
 {
   "app_type": "node",
-  "startup_file": "dist/server/index.js",
+  "startup_file": "app.js",
   "environment": "production",
   "port": 4000,
   "node_env": "production",
-  "log_file": "/var/www/vhosts/kumrular.com/logs/passenger.log"
+  "log_file": "/var/www/vhosts/kumrular.com/logs/passenger.log",
+  "min_instances": 1,
+  "max_pool_size": 6,
+  "spawn_method": "direct",
+  "friendly_error_pages": true
 }

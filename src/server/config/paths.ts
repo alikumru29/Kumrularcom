@@ -4,11 +4,17 @@ import { dirname, join } from "node:path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// In production, use absolute paths
-const rootDir =
-  process.env.NODE_ENV === "production"
-    ? "/var/www/vhosts/kumrular.com/httpdocs"
-    : join(__dirname, "../../..");
+// Get root directory based on environment
+const getRootDir = () => {
+  if (process.env.NODE_ENV === "production") {
+    return (
+      process.env.PASSENGER_APP_ROOT || "/var/www/vhosts/kumrular.com/httpdocs"
+    );
+  }
+  return join(__dirname, "../../..");
+};
+
+const rootDir = getRootDir();
 
 export const paths = {
   root: rootDir,

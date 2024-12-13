@@ -1,2 +1,3 @@
 // Passenger entry point
-import "./dist/server/index.js";
+import app from "./dist/server/index.js";
+export default app;
