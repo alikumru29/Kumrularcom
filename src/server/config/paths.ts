@@ -12,5 +12,8 @@ export const paths = {
     images: join(__dirname, "../../../dist/client/assets/images"),
     index: join(__dirname, "../../../dist/client/index.html"),
   },
-  cache: join(__dirname, "../../../cache"),
+  server: {
+    dist: join(__dirname, "../../../dist/server"),
+    cache: join(__dirname, "../../../dist/server/cache"),
+  },
 } as const;
