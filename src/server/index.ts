@@ -19,22 +19,20 @@ async function startServer() {
     app.use(securityMiddleware);
 
     // Ensure cache directory exists
-    app.use((_req, _res, next) => {
-      try {
-        if (!fs.existsSync(paths.server.cache)) {
-          fs.mkdirSync(paths.server.cache, { recursive: true });
-        }
-        next();
-      } catch (error) {
-        console.error("Error creating cache directory:", error);
-        next(error);
+    try {
+      if (!fs.existsSync(paths.server.cache)) {
+        fs.mkdirSync(paths.server.cache, { recursive: true });
       }
-    });
+    } catch (error) {
+      console.error("Error creating cache directory:", error);
+    }
 
     // Error handling middleware
     app.use((err: any, _req: any, res: any, _next: any) => {
       console.error("Error:", err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res
+        .status(500)
+        .json({ error: "Internal Server Error", details: err.message });
     });
 
     // Routes
@@ -43,7 +41,12 @@ async function startServer() {
     app.use(spaRoutes); // This should be last
 
     // Start scheduler
-    await startProductUpdateScheduler();
+    try {
+      await startProductUpdateScheduler();
+    } catch (error) {
+      console.error("Scheduler error:", error);
+      // Continue server startup even if scheduler fails
+    }
 
     // Start server
     app.listen(env.port, () => {

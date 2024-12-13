@@ -3,17 +3,21 @@ import { dirname, join } from "node:path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const rootDir =
+  process.env.NODE_ENV === "production"
+    ? "/var/www/vhosts/kumrular.com/httpdocs"
+    : join(__dirname, "../../..");
 
 export const paths = {
-  root: join(__dirname, "../../.."),
+  root: rootDir,
   client: {
-    dist: join(__dirname, "../../../dist/client"),
-    assets: join(__dirname, "../../../dist/client/assets"),
-    images: join(__dirname, "../../../dist/client/assets/images"),
-    index: join(__dirname, "../../../dist/client/index.html"),
+    dist: join(rootDir, "dist/client"),
+    assets: join(rootDir, "dist/client/assets"),
+    images: join(rootDir, "dist/client/assets/images"),
+    index: join(rootDir, "dist/client/index.html"),
   },
   server: {
-    dist: join(__dirname, "../../../dist/server"),
-    cache: join(__dirname, "../../../dist/server/cache"),
+    dist: join(rootDir, "dist/server"),
+    cache: join(rootDir, "dist/server/cache"),
   },
 } as const;

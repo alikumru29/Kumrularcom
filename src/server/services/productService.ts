@@ -26,11 +26,17 @@ export class ProductService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
+      // Ensure cache directory exists
+      if (!fs.existsSync(paths.server.cache)) {
+        fs.mkdirSync(paths.server.cache, { recursive: true });
+      }
+
       // Try to get from cache first
       const cachedProducts = this.cacheService.getItem<Product[]>(
         this.PRODUCTS_CACHE_KEY
       );
-      if (cachedProducts) {
+      if (cachedProducts && cachedProducts.length > 0) {
+        console.log(`Using cached products (${cachedProducts.length} items)`);
         this.products = cachedProducts;
         return cachedProducts;
       }
@@ -39,6 +45,10 @@ export class ProductService {
       console.log("Fetching fresh product data from XML...");
       const products = await this.xmlService.fetchProducts();
 
+      if (!products || products.length === 0) {
+        throw new Error("No products returned from XML service");
+      }
+
       // Update cache
       this.cacheService.setItem(this.PRODUCTS_CACHE_KEY, products);
       this.products = products;
@@ -46,19 +56,25 @@ export class ProductService {
       console.log(`Cached ${products.length} products successfully`);
       return products;
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Error in ProductService.fetchProducts:", error);
 
-      // If there's an error fetching new data, try to use existing cache
+      // Try to use existing cache as fallback
       const fallbackCachePath = path.join(
         paths.server.cache,
         `${this.PRODUCTS_CACHE_KEY}.json`
       );
       if (fs.existsSync(fallbackCachePath)) {
-        console.log("Using fallback cache...");
-        const cachedData = JSON.parse(
-          fs.readFileSync(fallbackCachePath, "utf-8")
-        );
-        return cachedData.data;
+        try {
+          console.log("Using fallback cache...");
+          const cachedData = JSON.parse(
+            fs.readFileSync(fallbackCachePath, "utf-8")
+          );
+          if (cachedData.data && Array.isArray(cachedData.data)) {
+            return cachedData.data;
+          }
+        } catch (cacheError) {
+          console.error("Error reading fallback cache:", cacheError);
+        }
       }
 
       throw new Error(
