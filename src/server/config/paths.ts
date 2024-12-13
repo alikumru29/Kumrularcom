@@ -3,6 +3,8 @@ import { dirname, join } from "node:path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// In production, use absolute paths
 const rootDir =
   process.env.NODE_ENV === "production"
     ? "/var/www/vhosts/kumrular.com/httpdocs"
@@ -19,5 +21,6 @@ export const paths = {
   server: {
     dist: join(rootDir, "dist/server"),
     cache: join(rootDir, "dist/server/cache"),
+    logs: join(rootDir, "logs"),
   },
 } as const;
