@@ -1,22 +1,19 @@
+// src/server/middleware/static.ts
 import express, { Response } from "express";
 import { ExpressMiddleware } from "../types/express.js";
 import { paths } from "../config/paths.js";
+import { MIME_TYPES, HEADERS } from "../config/constants.js";
 
-const setMimeType: ExpressMiddleware = (req, res, next) => {
-  const ext = req.path.split(".").pop()?.toLowerCase();
-  if (ext === "js" || ext === "mjs") {
-    res.type("application/javascript");
-  } else if (ext === "css") {
-    res.type("text/css");
-  }
+const setMimeType: ExpressMiddleware = (_req, res, next) => {
+  res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.JS);
   next();
 };
 
 const setStaticHeaders = (res: Response, path: string) => {
   if (path.endsWith(".js") || path.endsWith(".mjs")) {
-    res.setHeader("Content-Type", "application/javascript");
+    res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.JS);
   }
-  res.setHeader("Cache-Control", "public, max-age=31536000");
+  res.setHeader(HEADERS.CACHE_CONTROL, "public, max-age=31536000");
 };
 
 const staticFiles = express.static(paths.client.dist, {
