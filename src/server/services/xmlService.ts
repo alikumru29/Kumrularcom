@@ -21,16 +21,27 @@ export class XmlService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
+      console.log("Fetching XML from:", this.XML_URL);
       const response = await fetch(this.XML_URL);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const xmlText = await response.text();
-      return this.xmlParser.parseXml(xmlText);
+      console.log("XML fetched successfully, parsing...");
+
+      const products = this.xmlParser.parseXml(xmlText);
+      console.log(`Parsed ${products.length} products successfully`);
+
+      return products;
     } catch (error) {
-      console.error("Error fetching XML:", error);
-      throw error;
+      console.error("Error in XmlService.fetchProducts:", error);
+      throw new Error(
+        `XML verisi alınamadı: ${
+          error instanceof Error ? error.message : "Bilinmeyen hata"
+        }`
+      );
     }
   }
 }

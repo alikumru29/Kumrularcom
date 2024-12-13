@@ -11,6 +11,23 @@ async function startServer() {
   try {
     const app = express();
 
+    // Error handling middleware
+    app.use(
+      (
+        err: any,
+        _req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+      ) => {
+        console.error("Unhandled error:", err);
+        res.status(500).json({
+          error: "Internal Server Error",
+          message: err.message || "Bilinmeyen bir hata oluştu",
+        });
+        next(err);
+      }
+    );
+
     // Basic middleware
     app.use(corsMiddleware);
     app.use(express.json());
@@ -19,7 +36,7 @@ async function startServer() {
     // Routes
     app.use("/api", apiRoutes);
     app.use(staticMiddleware);
-    app.use(spaRoutes); // This should be last
+    app.use(spaRoutes);
 
     // Start scheduler
     await startProductUpdateScheduler();
