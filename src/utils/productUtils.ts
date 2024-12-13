@@ -1,4 +1,4 @@
-import { TechnicalDetail } from "../types/product";
+import { TechnicalDetail } from "../types/product.js";
 
 export function parseTechnicalDetails(element: Element): TechnicalDetail[] {
   const details = element.getElementsByTagName("TeknikDetay");

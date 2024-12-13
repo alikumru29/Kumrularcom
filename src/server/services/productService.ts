@@ -1,17 +1,19 @@
 import { Product } from "../../types/product.js";
-import { CacheService } from "./cacheService.js";
 import { XmlService } from "./xmlService.js";
-import { ProductUtils } from "../utils/productUtils.js";
+import { CacheService } from "./cacheService.js";
+import fs from "fs";
+import path from "path";
+import { paths } from "../config/paths.js";
 
 export class ProductService {
   private static instance: ProductService;
-  private readonly cacheService: CacheService;
-  private readonly xmlService: XmlService;
   private products: Product[] = [];
+  private readonly xmlService: XmlService;
+  private readonly cacheService: CacheService;
 
   private constructor() {
-    this.cacheService = CacheService.getInstance();
     this.xmlService = XmlService.getInstance();
+    this.cacheService = CacheService.getInstance();
   }
 
   static getInstance(): ProductService {
@@ -32,16 +34,26 @@ export class ProductService {
 
       // Fetch fresh data if cache miss
       const products = await this.xmlService.fetchProducts();
-      const shuffledProducts = ProductUtils.shuffleProducts(products);
+
+      // Ensure cache directory exists
+      if (!fs.existsSync(paths.cache)) {
+        fs.mkdirSync(paths.cache, { recursive: true });
+      }
 
       // Update cache
-      this.cacheService.setItem("products", shuffledProducts);
-      this.products = shuffledProducts;
+      this.cacheService.setItem("products", products);
+      this.products = products;
 
-      return shuffledProducts;
+      return products;
     } catch (error) {
       console.error("Error fetching products:", error);
-      throw new Error("Ürünler yüklenirken bir hata oluştu.");
+      // If there's an error fetching new data, try to use existing cache
+      const existingCache = path.join(paths.cache, "parsed_products.json");
+      if (fs.existsSync(existingCache)) {
+        const cachedData = JSON.parse(fs.readFileSync(existingCache, "utf-8"));
+        return cachedData.products;
+      }
+      throw error;
     }
   }
 
