@@ -3,5 +3,6 @@
   "startup_file": "app.js",
   "environment": "production",
   "port": 4000,
-  "node_env": "production"
+  "node_env": "production",
+  "log_file": "/var/www/vhosts/kumrular.com/logs/passenger.log"
 }

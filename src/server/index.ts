@@ -48,12 +48,19 @@ async function startServer() {
       // Continue server startup even if scheduler fails
     }
 
-    // Start server
-    app.listen(env.port, () => {
-      console.log(`Server running on port ${env.port} in ${env.nodeEnv} mode`);
-      console.log(`Static files served from: ${paths.client.dist}`);
-      console.log(`Cache directory: ${paths.server.cache}`);
-    });
+    // Export app for Passenger
+    if (process.env.NODE_ENV === "production") {
+      module.exports = app;
+    } else {
+      // Start server in development
+      app.listen(env.port, () => {
+        console.log(
+          `Server running on port ${env.port} in ${env.nodeEnv} mode`
+        );
+        console.log(`Static files served from: ${paths.client.dist}`);
+        console.log(`Cache directory: ${paths.server.cache}`);
+      });
+    }
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
