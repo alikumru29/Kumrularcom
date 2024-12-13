@@ -1,40 +1,62 @@
 import express, { Response } from "express";
 import { ExpressMiddleware } from "../types/express.js";
 import { paths } from "../config/paths.js";
-import { MIME_TYPES, HEADERS } from "../config/constants.js";
+import { MIME_TYPES, HEADERS, CACHE_CONTROL } from "../config/constants.js";
 
 const setMimeType: ExpressMiddleware = (req, res, next) => {
   const ext = req.path.split(".").pop()?.toLowerCase();
 
+  if (!ext) {
+    next();
+    return;
+  }
+
   switch (ext) {
     case "js":
     case "mjs":
-      res.type(MIME_TYPES.JS);
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.JS);
       break;
     case "css":
-      res.type(MIME_TYPES.CSS);
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.CSS);
       break;
     case "html":
-      res.type(MIME_TYPES.HTML);
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.HTML);
       break;
+    case "json":
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.JSON);
+      break;
+    case "png":
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.IMAGE.PNG);
+      break;
+    case "jpg":
+    case "jpeg":
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.IMAGE.JPG);
+      break;
+    case "gif":
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.IMAGE.GIF);
+      break;
+    case "svg":
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.IMAGE.SVG);
+      break;
+    case "ico":
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.IMAGE.ICO);
+      break;
+    default:
+      res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.PLAIN);
   }
 
   next();
 };
 
 const setStaticHeaders = (res: Response, path: string) => {
-  // Set appropriate MIME type based on file extension
-  if (path.endsWith(".js") || path.endsWith(".mjs")) {
-    res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.JS);
-  } else if (path.endsWith(".css")) {
-    res.setHeader(HEADERS.CONTENT_TYPE, MIME_TYPES.CSS);
-  }
+  // Set no-sniff header for security
+  res.setHeader(HEADERS.SECURITY.NO_SNIFF, "nosniff");
 
   // Set caching headers
   if (path.includes("/assets/")) {
-    res.setHeader(HEADERS.CACHE_CONTROL, "public, max-age=31536000");
+    res.setHeader(HEADERS.CACHE_CONTROL, CACHE_CONTROL.PUBLIC_LONG);
   } else {
-    res.setHeader(HEADERS.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
+    res.setHeader(HEADERS.CACHE_CONTROL, CACHE_CONTROL.NO_CACHE);
   }
 };
 
