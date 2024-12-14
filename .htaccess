@@ -1,20 +1,23 @@
-# Enable rewrite engine
+# Disable Passenger
+
+PassengerEnabled off
+
+# Proxy all requests to Node.js
+
 RewriteEngine On
 
 # Handle API requests
+
 RewriteCond %{REQUEST_URI} ^/api/
-RewriteRule ^api/(.*)$ http://localhost:4000/api/$1 [P,L]
+RewriteRule ^api/(.\*)$ http://localhost:4000/api/$1 [P,L]
 
-# Set proper headers for API responses
-<LocationMatch "^/api/">
-    Header set Access-Control-Allow-Origin "*"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    Header set Access-Control-Allow-Headers "Content-Type"
-    Header set Cache-Control "no-cache, no-store, must-revalidate"
-</LocationMatch>
+# Handle all other requests
 
-# Handle Node.js application
-PassengerEnabled on
-PassengerAppType node
-PassengerStartupFile dist/server/index.js
-PassengerAppEnv production
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^(.\*)$ http://localhost:4000/$1 [P,L]
+
+# Set proper headers
+
+Header set Access-Control-Allow-Origin "\*"
+Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type"

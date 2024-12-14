@@ -6,9 +6,19 @@ async function startServer() {
     const app = await createApp();
     const port = process.env.PORT || 4000;
 
-    app.listen(port, () => {
+    const server = app.listen(port, () => {
       logger.info(`Server running on port ${port}`);
       logger.info(`Environment: ${process.env.NODE_ENV}`);
+      logger.info(`Process ID: ${process.pid}`);
+    });
+
+    // Handle graceful shutdown
+    process.on("SIGTERM", () => {
+      logger.info("SIGTERM received. Shutting down gracefully...");
+      server.close(() => {
+        logger.info("Server closed");
+        process.exit(0);
+      });
     });
   } catch (error) {
     logger.error("Failed to start server:", error);
