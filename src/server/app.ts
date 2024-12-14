@@ -8,7 +8,7 @@ import { errorHandler } from "./middleware/error.js";
 import { logger } from "./utils/logger.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CLIENT_BUILD_PATH = path.resolve(__dirname, "../../client");
+const CLIENT_BUILD_PATH = path.join(__dirname, "../../client");
 
 export async function createApp() {
   const app = express();

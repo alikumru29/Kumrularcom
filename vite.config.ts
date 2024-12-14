@@ -4,34 +4,23 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 5173,
-    host: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:4000",
-        changeOrigin: true,
-      },
-    },
-  },
   build: {
     outDir: "dist/client",
     emptyOutDir: true,
     sourcemap: true,
-    assetsDir: "assets",
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
-      },
       output: {
-        // Ensure proper module format
-        format: "es",
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+        },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split(".");
-          const extType = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-            const fileName = info[0].split("/").pop();
-            return `assets/images/${fileName}-[hash][extname]`;
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (ext === "css") {
+            return `assets/css/[name]-[hash][extname]`;
           }
           return `assets/[name]-[hash][extname]`;
         },
@@ -40,9 +29,10 @@ export default defineConfig({
       },
     },
   },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": "http://localhost:4000",
     },
   },
 });

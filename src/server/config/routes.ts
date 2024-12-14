@@ -13,11 +13,8 @@ export function setupRoutes(app: Express, clientPath: string) {
 
   // SPA fallback - serve index.html for all other routes
   app.get("*", (req, res) => {
-    const indexPath = path.join(clientPath, "index.html");
-    logger.info(`Serving index.html from: ${indexPath}`);
-    logger.info(`Requested path: ${req.path}`);
-
-    res.sendFile(indexPath, (err) => {
+    logger.info(`Serving index.html for path: ${req.path}`);
+    res.sendFile(path.join(clientPath, "index.html"), (err) => {
       if (err) {
         logger.error("Error serving index.html:", err);
         res.status(500).send("Error loading page");
