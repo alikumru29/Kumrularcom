@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { brands } from "../data/brands";
 import { ExternalLink, Check } from "lucide-react";
-import { turkishToAscii } from "../utils/turkishUtils";
+import { turkishToAscii } from "../shared/utils/turkishUtils";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import ContactCTA from "../components/ContactCTA";
 import SEOHead from "../components/SEOHead";

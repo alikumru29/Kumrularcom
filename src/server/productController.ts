@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Product } from "../types/product.js";
-import { turkishToAscii } from "../utils/turkishUtils.js";
+import { turkishToAscii } from "../shared/utils/turkishUtils.js";
 import fs from "fs";
 import path from "path";
 

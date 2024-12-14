@@ -1,5 +1,5 @@
 import { Product, TechnicalDetail } from "../../types/product.js";
-import { turkishToAscii } from "./turkishUtils.js";
+import { turkishToAscii } from "../../shared/utils/turkishUtils.js";
 import { DOMParser } from "@xmldom/xmldom";
 
 export class XmlParser {

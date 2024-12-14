@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Brand } from "../types/brand";
-import { turkishToAscii } from "../utils/turkishUtils";
+import { turkishToAscii } from "../shared/utils/turkishUtils";
 
 interface BrandCardProps {
   brand: Brand;

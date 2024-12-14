@@ -1,7 +1,7 @@
-import { ApiService } from "../client/services/api";
+import { ApiService } from "../client/services/api.js";
 import { useState, useEffect } from "react";
-import { Product } from "../types/product";
-import { useProductFilters } from "./useProductFilters";
+import { Product } from "../types/product.js";
+import { useProductFilters } from "./useProductFilters.js";
 
 const ITEMS_PER_PAGE = 12;
 
