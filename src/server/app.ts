@@ -31,10 +31,12 @@ export async function createApp() {
     console.error("Scheduler error:", error);
   }
 
-  // Start server
-  app.listen(env.port, () => {
-    console.log(`Server running on port ${env.port} in ${env.nodeEnv} mode`);
-  });
+  // Only start server if not running under Passenger
+  if (!process.env.PASSENGER_BASE_URI) {
+    app.listen(env.port, () => {
+      console.log(`Server running on port ${env.port} in ${env.nodeEnv} mode`);
+    });
+  }
 
   return app;
 }

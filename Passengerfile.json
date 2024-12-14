@@ -1,6 +1,6 @@
 {
   "app_type": "node",
-  "startup_file": "app.js",
+  "startup_file": "dist/server/index.js",
   "environment": "production",
   "port": 4000,
   "node_env": "production",
@@ -8,5 +8,5 @@
   "min_instances": 1,
   "max_pool_size": 6,
   "spawn_method": "direct",
-  "friendly_error_pages": true
+  "friendly_error_pages": false
 }

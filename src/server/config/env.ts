@@ -4,6 +4,7 @@ const envSchema = z.object({
   PORT: z.string().default("4000"),
   NODE_ENV: z.enum(["development", "production"]).default("development"),
   PUBLIC_PATH: z.string().default("/"),
+  PASSENGER_BASE_URI: z.string().optional(),
 });
 
 const validateEnv = () => {
@@ -27,4 +28,5 @@ export const env = {
   nodeEnv: validatedEnv.NODE_ENV,
   isProduction: validatedEnv.NODE_ENV === "production",
   publicPath: validatedEnv.NODE_ENV === "production" ? "/dist/client" : "/",
+  isPassenger: !!validatedEnv.PASSENGER_BASE_URI,
 } as const;
