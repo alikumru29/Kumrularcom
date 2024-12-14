@@ -6,18 +6,6 @@
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
   
-  # Handle module scripts
-  <FilesMatch "\.js$">
-    SetHandler application/x-httpd-php
-    Header set Content-Type "application/javascript"
-  </FilesMatch>
-  
-  # Handle module imports
-  <FilesMatch "\.mjs$">
-    SetHandler application/x-httpd-php
-    Header set Content-Type "application/javascript"
-  </FilesMatch>
-  
   # Rewrite all other requests to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
