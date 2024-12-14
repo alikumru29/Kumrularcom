@@ -1,15 +1,30 @@
 import { Router } from "express";
-import { getProducts } from "../controllers/productController.js";
-import { generateToken } from "../controllers/authController.js";
-import { authMiddleware } from "../middleware/auth.js";
+import { ProductService } from "../services/productService.js";
 
 const router = Router();
+const productService = ProductService.getInstance();
 
-// Public endpoints (token alma)
-router.post("/auth/token", generateToken);
+// API middleware
+router.use((_req, res, next) => {
+  res.setHeader("Content-Type", "application/json");
+  next();
+});
 
-// Protected endpoints (token gerekli)
-router.use(authMiddleware);
-router.get("/products", getProducts);
+// Products endpoint
+router.get("/products", async (_req, res) => {
+  try {
+    const products = await productService.fetchProducts();
+    res.json({
+      success: true,
+      data: products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: "Ürünler yüklenirken bir hata oluştu",
+      details: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
+});
 
 export const apiRoutes = router;

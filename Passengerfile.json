@@ -4,7 +4,6 @@
   "environment": "production",
   "port": 4000,
   "node_env": "production",
-  "log_file": "/var/www/vhosts/kumrular.com/logs/passenger.log",
   "min_instances": 1,
   "max_pool_size": 6,
   "spawn_method": "direct",

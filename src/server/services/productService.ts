@@ -1,20 +1,24 @@
 import { Product } from "../../types/product.js";
-import { XmlService } from "./xmlService.js";
-import { CacheService } from "./cacheService.js";
-import { paths } from "../config/paths.js";
-import fs from "fs";
-import path from "path";
+import { XmlParser } from "../utils/xmlParser.js";
+import { logger } from "../utils/logger.js";
+import fetch from "node-fetch";
 
 export class ProductService {
   private static instance: ProductService;
   private products: Product[] = [];
-  private readonly xmlService: XmlService;
-  private readonly cacheService: CacheService;
-  private readonly PRODUCTS_CACHE_KEY = "parsed_products";
+  private lastFetch: number = 0;
+  private readonly XML_URL =
+    "https://www.yapihome.net/TicimaxXml/278B3C02B88342ACBEA3385B6BAF600C";
+  private readonly CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+  private fetchPromise: Promise<Product[]> | null = null;
 
   private constructor() {
-    this.xmlService = XmlService.getInstance();
-    this.cacheService = CacheService.getInstance();
+    // Start periodic update
+    setInterval(() => {
+      this.fetchProducts().catch((error) => {
+        logger.error("Error in periodic product update:", error);
+      });
+    }, this.CACHE_DURATION);
   }
 
   static getInstance(): ProductService {
@@ -26,61 +30,67 @@ export class ProductService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
-      // Ensure cache directory exists
-      if (!fs.existsSync(paths.server.cache)) {
-        fs.mkdirSync(paths.server.cache, { recursive: true });
+      // Return cached data if valid
+      if (this.hasValidCache()) {
+        logger.info(`Returning ${this.products.length} cached products`);
+        return this.products;
       }
 
-      // Try to get from cache first
-      const cachedProducts = this.cacheService.getItem<Product[]>(
-        this.PRODUCTS_CACHE_KEY
-      );
-      if (cachedProducts && cachedProducts.length > 0) {
-        console.log(`Using cached products (${cachedProducts.length} items)`);
-        this.products = cachedProducts;
-        return cachedProducts;
+      // If a fetch is already in progress, return its promise
+      if (this.fetchPromise) {
+        logger.info("Fetch already in progress, waiting...");
+        return this.fetchPromise;
       }
 
-      // Fetch fresh data if cache miss
-      console.log("Fetching fresh product data from XML...");
-      const products = await this.xmlService.fetchProducts();
+      // Start new fetch
+      logger.info("Fetching fresh product data from XML...");
+      this.fetchPromise = this.fetchFreshData();
+
+      const products = await this.fetchPromise;
+      this.fetchPromise = null;
 
       if (!products || products.length === 0) {
         throw new Error("No products returned from XML service");
       }
 
       // Update cache
-      this.cacheService.setItem(this.PRODUCTS_CACHE_KEY, products);
       this.products = products;
+      this.lastFetch = Date.now();
 
-      console.log(`Cached ${products.length} products successfully`);
+      logger.info(
+        `Successfully fetched and cached ${products.length} products`
+      );
       return products;
     } catch (error) {
-      console.error("Error in ProductService.fetchProducts:", error);
+      this.fetchPromise = null;
+      logger.error("Error fetching products:", error);
 
-      // Try to use existing cache as fallback
-      const fallbackCachePath = path.join(
-        paths.server.cache,
-        `${this.PRODUCTS_CACHE_KEY}.json`
-      );
-      if (fs.existsSync(fallbackCachePath)) {
-        try {
-          console.log("Using fallback cache...");
-          const cachedData = JSON.parse(
-            fs.readFileSync(fallbackCachePath, "utf-8")
-          );
-          if (cachedData.data && Array.isArray(cachedData.data)) {
-            return cachedData.data;
-          }
-        } catch (cacheError) {
-          console.error("Error reading fallback cache:", cacheError);
-        }
+      // Return cached products as fallback if available
+      if (this.products.length > 0) {
+        logger.info("Returning cached products as fallback");
+        return this.products;
       }
 
-      throw new Error(
-        "Ürünler yüklenirken bir hata oluştu ve önbellek kullanılamadı."
-      );
+      throw error;
     }
+  }
+
+  private async fetchFreshData(): Promise<Product[]> {
+    const response = await fetch(this.XML_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const xmlText = await response.text();
+    const parser = new XmlParser();
+    return parser.parseXml(xmlText);
+  }
+
+  private hasValidCache(): boolean {
+    return (
+      this.products.length > 0 &&
+      Date.now() - this.lastFetch < this.CACHE_DURATION
+    );
   }
 
   getProducts(): Product[] {

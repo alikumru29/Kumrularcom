@@ -1,30 +1,20 @@
+# Enable rewrite engine
+RewriteEngine On
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    
-    # API isteklerini Node.js uygulamasına yönlendir
-    RewriteCond %{REQUEST_URI} ^/api/ [NC]
-    RewriteRule ^api/(.*) http://127.0.0.1:4000/api/$1 [P,L]
-    
-    # Statik dosyaları işle
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^(.*)\.(js|css|png|jpg|jpeg|gif|ico|svg)$ - [L]
-    
-    # Diğer tüm istekleri index.html'e yönlendir
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.html [L]
-</IfModule>
+# Handle API requests
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ http://localhost:4000/api/$1 [P,L]
 
-# CORS başlıklarını ayarla
-<IfModule mod_headers.c>
+# Set proper headers for API responses
+<LocationMatch "^/api/">
     Header set Access-Control-Allow-Origin "*"
     Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    Header set Access-Control-Allow-Headers "Content-Type, X-API-Key"
-</IfModule>
+    Header set Access-Control-Allow-Headers "Content-Type"
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+</LocationMatch>
 
-# MIME türlerini ayarla
-AddType application/javascript .js
-AddType text/css .css
-AddType application/json .json
+# Handle Node.js application
+PassengerEnabled on
+PassengerAppType node
+PassengerStartupFile dist/server/index.js
+PassengerAppEnv production
