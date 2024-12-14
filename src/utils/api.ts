@@ -1,4 +1,4 @@
-import { ApiError } from "../types/api";
+import { ApiError } from "../types/api.js";
 
 export class ApiUtils {
   static handleError(error: unknown): ApiError {
