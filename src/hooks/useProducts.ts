@@ -25,15 +25,22 @@ export function useProducts() {
     const loadProducts = async () => {
       try {
         setLoading(true);
+        console.log("Fetching products...");
         const data = await apiService.fetchProducts();
+
         if (mounted) {
+          console.log("Products fetched:", data);
           setProducts(data);
           setError(null);
         }
       } catch (err) {
+        console.error("Error in useProducts:", err);
         if (mounted) {
-          setError("Ürünler yüklenirken bir hata oluştu.");
-          console.error("Error loading products:", err);
+          setError(
+            err instanceof Error
+              ? err.message
+              : "Ürünler yüklenirken bir hata oluştu"
+          );
         }
       } finally {
         if (mounted) {
@@ -48,11 +55,6 @@ export function useProducts() {
       mounted = false;
     };
   }, []);
-
-  // Reset page when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters]);
 
   const filteredProducts = filterProducts(products, filters);
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);

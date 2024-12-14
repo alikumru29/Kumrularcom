@@ -1,10 +1,11 @@
 import { ApiResponse } from "../../types/api";
 import { Product } from "../../types/product";
 
-const API_BASE_URL = "https://api.kumrular.com/api";
-
 export class ApiService {
   private static instance: ApiService;
+  private readonly API_URL = import.meta.env.PROD
+    ? "https://api.kumrular.com/api/products"
+    : "http://localhost:5173/api/products";
 
   private constructor() {}
 
@@ -17,15 +18,36 @@ export class ApiService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
-      const response = await fetch(`${API_BASE_URL}/products`);
+      console.log("Fetching products from:", this.API_URL);
+
+      const response = await fetch(this.API_URL, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+      });
 
       if (!response.ok) {
+        console.error(
+          "API Response Error:",
+          response.status,
+          response.statusText
+        );
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data: ApiResponse<Product[]> = await response.json();
+      const data = await response.json();
+      console.log("API Response:", data);
+
+      // Geçici çözüm: API yanıtı success/data formatında değilse
+      if (Array.isArray(data)) {
+        return data;
+      }
 
       if (!data.success || !data.data) {
+        console.error("Invalid API Response:", data);
         throw new Error(data.error || "Invalid response from server");
       }
 

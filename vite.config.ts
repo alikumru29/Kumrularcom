@@ -3,35 +3,29 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    outDir: "dist",
-    emptyOutDir: true,
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        format: "es",
-        manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
-        },
-        assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split(".");
-          const ext = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
-            return `assets/images/[name]-[hash][extname]`;
-          }
-          if (ext === "css") {
-            return `assets/css/[name]-[hash][extname]`;
-          }
-          return `assets/[name]-[hash][extname]`;
-        },
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
-      },
-    },
-  },
   server: {
-    headers: {
-      "Content-Type": "application/javascript",
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "https://api.kumrular.com",
+        changeOrigin: true,
+        secure: false,
+        configure: (proxy, _options) => {
+          proxy.on("error", (err, _req, _res) => {
+            console.log("proxy error", err);
+          });
+          proxy.on("proxyReq", (proxyReq, req, _res) => {
+            console.log("Sending Request to the Target:", req.method, req.url);
+          });
+          proxy.on("proxyRes", (proxyRes, req, _res) => {
+            console.log(
+              "Received Response from the Target:",
+              proxyRes.statusCode,
+              req.url
+            );
+          });
+        },
+      },
     },
   },
 });

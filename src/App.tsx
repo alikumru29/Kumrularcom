@@ -34,29 +34,24 @@ function ScrollToTop() {
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/urunler" element={<ProductsPage />} />
-              <Route path="/urunler/:slug" element={<ProductDetailPage />} />
-              <Route path="/kategoriler" element={<CategoriesPage />} />
-              <Route
-                path="/kategoriler/:categoryId"
-                element={<CategoryPage />}
-              />
-              <Route path="/markalar" element={<BrandsPage />} />
-              <Route path="/markalar/:brandId" element={<BrandPage />} />
-              <Route path="/neden-biz" element={<AboutPage />} />
-              <Route path="/iletisim" element={<ContactPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/urunler" element={<ProductsPage />} />
+            <Route path="/urunler/:slug" element={<ProductDetailPage />} />
+            <Route path="/kategoriler" element={<CategoriesPage />} />
+            <Route path="/kategoriler/:categoryId" element={<CategoryPage />} />
+            <Route path="/markalar" element={<BrandsPage />} />
+            <Route path="/markalar/:brandId" element={<BrandPage />} />
+            <Route path="/neden-biz" element={<AboutPage />} />
+            <Route path="/iletisim" element={<ContactPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+      <ScrollToTop />
     </HelmetProvider>
   );
 }
