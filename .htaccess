@@ -7,22 +7,12 @@ PassengerAppEnv production
     RewriteEngine On
     RewriteBase /
     
-    # Handle API requests
-    RewriteCond %{REQUEST_URI} ^/api/
-    RewriteRule ^api/(.*) http://localhost:4000/api/$1 [P,L]
-    
     # Handle static files
-    RewriteCond %{REQUEST_URI} \.(js|css|png|jpg|jpeg|gif|ico|svg)$
     RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^ - [L]
+    RewriteRule ^(.*)\.(js|css|png|jpg|jpeg|gif|ico|svg)$ - [L]
     
     # Handle all other requests - SPA routing
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.html [L]
 </IfModule>
-
-# Set proper MIME types
-AddType application/javascript .js .mjs
-AddType text/css .css
-AddType text/html .html .htm

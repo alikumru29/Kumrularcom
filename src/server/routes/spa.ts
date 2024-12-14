@@ -1,6 +1,6 @@
 import { Router } from "express";
+import { paths } from "../config/paths.js";
 import { MIME_TYPES, HEADERS, CACHE_CONTROL } from "../config/constants.js";
-import { getIndexHtmlPath } from "../utils/path.js";
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.get("*", (_req, res) => {
     [HEADERS.SECURITY.NO_SNIFF]: "nosniff",
   });
 
-  res.sendFile(getIndexHtmlPath());
+  res.sendFile(paths.client.index, { root: paths.root });
 });
 
 export const spaRoutes = router;

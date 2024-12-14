@@ -1,7 +1,7 @@
 import express from "express";
-import { ExpressMiddleware } from "../types/express.js";
+import { paths } from "../config/paths.js";
 import { MIME_TYPES, HEADERS, CACHE_CONTROL } from "../config/constants.js";
-import { getClientDistPath } from "../utils/path.js";
+import { ExpressMiddleware } from "../types/express.js";
 
 const setMimeType: ExpressMiddleware = (req, res, next) => {
   const ext = req.path.split(".").pop()?.toLowerCase();
@@ -58,8 +58,7 @@ const setStaticHeaders = (res: express.Response, path: string) => {
   }
 };
 
-// Create static middleware with options
-const staticFiles = express.static(getClientDistPath(), {
+const staticFiles = express.static(paths.client.dist, {
   index: false,
   etag: true,
   lastModified: true,
