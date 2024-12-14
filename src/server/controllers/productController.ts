@@ -7,9 +7,11 @@ export async function getProducts(_req: Request, res: Response) {
     const productService = ProductService.getInstance();
     const products = await productService.fetchProducts();
 
+    // Doğrudan JSON yanıtı döndür
     res.json({
       success: true,
       data: products,
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     logger.error("Error getting products:", error);

@@ -3,29 +3,28 @@
     RewriteEngine On
     RewriteBase /
     
-    # Handle API requests first
-    RewriteCond %{REQUEST_URI} ^/api/
-    RewriteRule ^api/(.*)$ http://localhost:4000/api/$1 [P,QSA,L]
+    # API isteklerini Node.js uygulamasına yönlendir
+    RewriteCond %{REQUEST_URI} ^/api/ [NC]
+    RewriteRule ^api/(.*) http://127.0.0.1:4000/api/$1 [P,L]
     
-    # Handle static files
+    # Statik dosyaları işle
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^(.*)\.(js|css|png|jpg|jpeg|gif|ico|svg)$ - [L]
     
-    # Handle all other requests - SPA routing
+    # Diğer tüm istekleri index.html'e yönlendir
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.html [L]
 </IfModule>
 
-# Set proper MIME types
+# CORS başlıklarını ayarla
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, X-API-Key"
+</IfModule>
+
+# MIME türlerini ayarla
 AddType application/javascript .js
 AddType text/css .css
 AddType application/json .json
-
-# Enable CORS for API
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "https://kumrular.com"
-    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
-    Header set Access-Control-Allow-Headers "Content-Type, X-API-Key"
-    Header set Access-Control-Allow-Credentials "true"
-</IfModule>
