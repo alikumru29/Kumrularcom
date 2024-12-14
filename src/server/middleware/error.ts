@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { ApiResponse } from "../types/api.js";
 
 export function errorHandler(
   err: any,
@@ -7,8 +8,12 @@ export function errorHandler(
   _next: NextFunction
 ) {
   console.error("Error:", err);
-  res.status(500).json({
+
+  const response: ApiResponse = {
+    success: false,
     error: "Internal Server Error",
-    details: err.message,
-  });
+    details: err instanceof Error ? err.message : "Unknown error occurred",
+  };
+
+  res.status(500).json(response);
 }

@@ -1,7 +1,9 @@
-import { Product } from "../types/product.js";
+import { ApiResponse } from "../types/api.js";
+import { Product } from "../types/product";
 
 export class ApiService {
   private static instance: ApiService;
+  private readonly API_BASE = "/api";
 
   private constructor() {}
 
@@ -14,14 +16,22 @@ export class ApiService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
-      const response = await fetch("/api/products");
+      const response = await fetch(`${this.API_BASE}/products`);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return await response.json();
+
+      const data: ApiResponse<Product[]> = await response.json();
+
+      if (!data.success || !data.data) {
+        throw new Error(data.error || "Invalid response from server");
+      }
+
+      return data.data;
     } catch (error) {
       console.error("Error fetching products:", error);
-      throw new Error("Ürünler yüklenirken bir hata oluştu.");
+      throw new Error("Ürünler yüklenirken bir hata oluştu");
     }
   }
 }
