@@ -17,7 +17,7 @@ export async function createApp() {
   app.use(express.json());
   app.use(securityMiddleware);
 
-  // API routes must come FIRST, before any static or SPA routes
+  // API routes must come FIRST
   app.use("/api", apiRoutes);
 
   // Static files come after API but before SPA
@@ -36,13 +36,26 @@ export async function createApp() {
     logger.error("Scheduler error:", error);
   }
 
-  // Start server if not running under Passenger
-  if (!env.isPassenger) {
-    const port = env.port || 4000;
-    app.listen(port, () => {
-      logger.info(`Server running on port ${port} in ${env.nodeEnv} mode`);
-    });
-  }
-
   return app;
+}
+
+// Sadece doğrudan çalıştırıldığında sunucuyu başlat
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const port = env.port || 4000;
+
+  // Port kullanımda mı kontrol et
+  const server = await createApp();
+  server
+    .listen(port, () => {
+      logger.info(`Server running on port ${port} in ${env.nodeEnv} mode`);
+    })
+    .on("error", (err: any) => {
+      if (err.code === "EADDRINUSE") {
+        logger.error(`Port ${port} is already in use`);
+        process.exit(1);
+      } else {
+        logger.error("Server error:", err);
+        process.exit(1);
+      }
+    });
 }
