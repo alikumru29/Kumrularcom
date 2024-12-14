@@ -1,4 +1,3 @@
-import { ApiResponse } from "../../types/api";
 import { Product } from "../../types/product";
 
 export class ApiService {
