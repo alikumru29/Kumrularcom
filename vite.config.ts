@@ -1,11 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
 
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "dist/client",
+    outDir: "dist",
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
@@ -31,8 +30,5 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    proxy: {
-      "/api": "http://localhost:4000",
-    },
   },
 });

@@ -1,16 +1,12 @@
 import { ApiResponse } from "../../types/api";
 import { Product } from "../../types/product";
-import { ClientCacheService } from "./clientCache";
+
+const API_BASE_URL = "https://api.kumrular.com/api";
 
 export class ApiService {
   private static instance: ApiService;
-  private readonly API_BASE = "/api";
-  private token: string | null = null;
-  private readonly cache: ClientCacheService;
 
-  private constructor() {
-    this.cache = ClientCacheService.getInstance();
-  }
+  private constructor() {}
 
   static getInstance(): ApiService {
     if (!ApiService.instance) {
@@ -19,54 +15,9 @@ export class ApiService {
     return ApiService.instance;
   }
 
-  private async getToken(): Promise<string> {
-    // Cache'den token'ı al
-    const cachedToken = this.cache.getItem<string>("api_token");
-    if (cachedToken) {
-      return cachedToken;
-    }
-
-    // İlk istek için token al
-    try {
-      const response = await fetch(`${this.API_BASE}/products`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const token = response.headers.get("X-Auth-Token");
-      if (!token) {
-        throw new Error("No token received from API");
-      }
-
-      // Token'ı cache'e kaydet
-      this.cache.setItem("api_token", token);
-      return token;
-    } catch (error) {
-      console.error("Error getting token:", error);
-      throw new Error("Failed to get API token");
-    }
-  }
-
   async fetchProducts(): Promise<Product[]> {
     try {
-      // Token yoksa veya geçersizse yeni token al
-      if (!this.token) {
-        this.token = await this.getToken();
-      }
-
-      const response = await fetch(`${this.API_BASE}/products`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${this.token}`,
-        },
-      });
-
-      // Token geçersiz olduysa yeni token al ve tekrar dene
-      if (response.status === 401) {
-        this.token = await this.getToken();
-        return this.fetchProducts();
-      }
+      const response = await fetch(`${API_BASE_URL}/products`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

@@ -4,16 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run server:dev\" \"vite\"",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "tsc && vite build",
-    "build:server": "tsc -p tsconfig.server.json",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "server:dev": "tsx watch src/server/index.ts",
-    "start": "cross-env NODE_ENV=production node dist/server/index.js",
-    "clean": "rimraf dist",
-    "postbuild": "mkdir -p dist/client && cp -r dist/* dist/client/ || xcopy /E /I /Y dist\\* dist\\client\\"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@xmldom/xmldom": "^0.8.10",
