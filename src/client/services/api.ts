@@ -6,10 +6,10 @@ export class ApiService {
   private static instance: ApiService;
   private readonly API_BASE = "/api";
   private token: string | null = null;
-  private readonly cacheService: ClientCacheService;
+  private readonly cache: ClientCacheService;
 
   private constructor() {
-    this.cacheService = ClientCacheService.getInstance();
+    this.cache = ClientCacheService.getInstance();
   }
 
   static getInstance(): ApiService {
@@ -21,7 +21,7 @@ export class ApiService {
 
   private async getToken(): Promise<string> {
     // Cache'den token'ı al
-    const cachedToken = this.cacheService.getItem<string>("api_token");
+    const cachedToken = this.cache.getItem<string>("api_token");
     if (cachedToken) {
       return cachedToken;
     }
@@ -40,7 +40,7 @@ export class ApiService {
       }
 
       // Token'ı cache'e kaydet
-      this.cacheService.setItem("api_token", token);
+      this.cache.setItem("api_token", token);
       return token;
     } catch (error) {
       console.error("Error getting token:", error);
