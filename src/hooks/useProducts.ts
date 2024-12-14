@@ -1,6 +1,6 @@
+import { ApiService } from "../client/services/api";
 import { useState, useEffect } from "react";
 import { Product } from "../types/product";
-import { ApiService } from "../services/api";
 import { useProductFilters } from "./useProductFilters";
 
 const ITEMS_PER_PAGE = 12;

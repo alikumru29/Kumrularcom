@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ApiUtils } from "../../utils/api.js";
+import { ApiUtils } from "../utils/api.js";
 import { logger } from "../utils/logger.js";
 import { env } from "../config/env.js";
 
