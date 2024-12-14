@@ -2,43 +2,50 @@
   RewriteEngine On
   RewriteBase /
   
-  # If the request is not for a file or directory
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
+  # Serve existing files directly
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
   
-  # Rewrite all requests to index.html
+  # Handle module scripts
+  <FilesMatch "\.js$">
+    SetHandler application/x-httpd-php
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+  
+  # Handle module imports
+  <FilesMatch "\.mjs$">
+    SetHandler application/x-httpd-php
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+  
+  # Rewrite all other requests to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
 
 # Set correct MIME types
 
-AddType text/css .css
 AddType application/javascript .js
+AddType application/javascript .mjs
+AddType text/css .css
 AddType image/svg+xml .svg
-AddType application/font-woff .woff
-AddType application/font-woff2 .woff2
 
-# Set security headers
+# Security headers
 
 Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "DENY"
 Header set X-XSS-Protection "1; mode=block"
 
-# Enable CORS
+# CORS headers
 
 Header set Access-Control-Allow-Origin "\*"
 Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
 Header set Access-Control-Allow-Headers "Content-Type"
 
-# Cache control for static assets
+# Cache control
 
-<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff2?)$">
+<FilesMatch "\.(js|mjs|css|jpg|jpeg|png|gif|ico|svg|woff2?)$">
 Header set Cache-Control "public, max-age=31536000"
-Header set Content-Type "application/x-javascript" env=js
-Header set Content-Type "text/css" env=css
 </FilesMatch>
-
-# No cache for HTML
 
 <FilesMatch "\.html$">
 Header set Cache-Control "no-cache, no-store, must-revalidate"

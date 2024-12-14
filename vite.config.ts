@@ -7,9 +7,9 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
     sourcemap: true,
-    assetsDir: "assets",
     rollupOptions: {
       output: {
+        format: "es",
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
         },
@@ -27,6 +27,11 @@ export default defineConfig({
         chunkFileNames: "assets/js/[name]-[hash].js",
         entryFileNames: "assets/js/[name]-[hash].js",
       },
+    },
+  },
+  server: {
+    headers: {
+      "Content-Type": "application/javascript",
     },
   },
 });
