@@ -18,6 +18,11 @@ export function apiMiddleware(req: Request, res: Response, next: NextFunction) {
     },
   };
 
+  // Only check API requests
+  if (!req.path.startsWith("/api/")) {
+    return next();
+  }
+
   // Skip auth check in development
   if (!env.isProduction) {
     return next();
@@ -26,9 +31,14 @@ export function apiMiddleware(req: Request, res: Response, next: NextFunction) {
   // Check API key for production
   const apiKey = req.headers["x-api-key"];
   const referer = req.headers.referer;
+  const origin = req.headers.origin;
 
   // Allow requests from our own domain or with valid API key
-  if (referer?.includes("kumrular.com") || apiKey === API_KEY) {
+  if (
+    referer?.includes("kumrular.com") ||
+    origin?.includes("kumrular.com") ||
+    apiKey === API_KEY
+  ) {
     next();
   } else {
     res.status(401).json({

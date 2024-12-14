@@ -1,10 +1,11 @@
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
     
     # Handle API requests first
     RewriteCond %{REQUEST_URI} ^/api/
-    RewriteRule ^api/(.*)$ http://localhost:4000/api/$1 [P,L]
+    RewriteRule ^api/(.*)$ http://localhost:4000/api/$1 [P,QSA,L]
     
     # Handle static files
     RewriteCond %{REQUEST_FILENAME} -f
@@ -20,3 +21,11 @@
 AddType application/javascript .js
 AddType text/css .css
 AddType application/json .json
+
+# Enable CORS for API
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "https://kumrular.com"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, X-API-Key"
+    Header set Access-Control-Allow-Credentials "true"
+</IfModule>

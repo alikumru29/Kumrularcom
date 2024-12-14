@@ -1,9 +1,8 @@
 import { ApiResponse } from "../types/api.js";
-import { Product } from "../types/product";
+import { Product } from "../types/product.js";
 
 export class ApiService {
   private static instance: ApiService;
-  private readonly API_BASE = "/api";
   private readonly API_KEY = "kumrular-api-key-2024";
 
   private constructor() {}
@@ -17,11 +16,12 @@ export class ApiService {
 
   async fetchProducts(): Promise<Product[]> {
     try {
-      const response = await fetch(`${this.API_BASE}/products`, {
+      const response = await fetch("/api/products", {
         headers: {
           "Content-Type": "application/json",
           "X-API-Key": this.API_KEY,
         },
+        credentials: "same-origin",
       });
 
       if (!response.ok) {
