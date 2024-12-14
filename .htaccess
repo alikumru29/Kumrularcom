@@ -1,23 +1,35 @@
-# Disable Passenger
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # If the request is not for a file or directory
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Rewrite all requests to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
 
-PassengerEnabled off
+# Set security headers
 
-# Proxy all requests to Node.js
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "DENY"
+Header set X-XSS-Protection "1; mode=block"
 
-RewriteEngine On
-
-# Handle API requests
-
-RewriteCond %{REQUEST_URI} ^/api/
-RewriteRule ^api/(.\*)$ http://localhost:4000/api/$1 [P,L]
-
-# Handle all other requests
-
-RewriteCond %{REQUEST_URI} !^/api/
-RewriteRule ^(.\*)$ http://localhost:4000/$1 [P,L]
-
-# Set proper headers
+# Enable CORS
 
 Header set Access-Control-Allow-Origin "\*"
 Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
 Header set Access-Control-Allow-Headers "Content-Type"
+
+# Cache control for static assets
+
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff2?)$">
+Header set Cache-Control "public, max-age=31536000"
+</FilesMatch>
+
+# No cache for HTML
+
+<FilesMatch "\.html$">
+Header set Cache-Control "no-cache, no-store, must-revalidate"
+</FilesMatch>

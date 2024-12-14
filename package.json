@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "clean": "rimraf dist",
-    "start": "node app.js"
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "@xmldom/xmldom": "^0.8.10",
