@@ -39,23 +39,24 @@ export async function createApp() {
   return app;
 }
 
-// Sadece doğrudan çalıştırıldığında sunucuyu başlat
-if (import.meta.url === `file://${process.argv[1]}`) {
-  const port = env.port || 4000;
-
-  // Port kullanımda mı kontrol et
-  const server = await createApp();
-  server
-    .listen(port, () => {
-      logger.info(`Server running on port ${port} in ${env.nodeEnv} mode`);
+// Plesk için özel başlatma mantığı
+if (process.env.PASSENGER_BASE_URI) {
+  // Passenger altında çalışıyoruz, express app'i döndür
+  createApp().catch((error) => {
+    logger.error("Failed to create app:", error);
+    process.exit(1);
+  });
+} else {
+  // Development ortamı için
+  const port = process.env.PORT || 4000;
+  createApp()
+    .then((app) => {
+      app.listen(port, () => {
+        logger.info(`Server running on port ${port} in ${env.nodeEnv} mode`);
+      });
     })
-    .on("error", (err: any) => {
-      if (err.code === "EADDRINUSE") {
-        logger.error(`Port ${port} is already in use`);
-        process.exit(1);
-      } else {
-        logger.error("Server error:", err);
-        process.exit(1);
-      }
+    .catch((error) => {
+      logger.error("Failed to start server:", error);
+      process.exit(1);
     });
 }
