@@ -10,6 +10,14 @@
   RewriteRule ^ index.html [L]
 </IfModule>
 
+# Set correct MIME types
+
+AddType text/css .css
+AddType application/javascript .js
+AddType image/svg+xml .svg
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
+
 # Set security headers
 
 Header set X-Content-Type-Options "nosniff"
@@ -26,6 +34,8 @@ Header set Access-Control-Allow-Headers "Content-Type"
 
 <FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|svg|woff2?)$">
 Header set Cache-Control "public, max-age=31536000"
+Header set Content-Type "application/x-javascript" env=js
+Header set Content-Type "text/css" env=css
 </FilesMatch>
 
 # No cache for HTML
