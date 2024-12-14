@@ -6,9 +6,17 @@ export async function getProducts(_req: Request, res: Response) {
   try {
     const productService = ProductService.getInstance();
     const products = await productService.fetchProducts();
-    res.api.success(products);
+
+    res.json({
+      success: true,
+      data: products,
+    });
   } catch (error) {
     logger.error("Error getting products:", error);
-    res.api.error(error);
+    res.status(500).json({
+      success: false,
+      error: "Internal Server Error",
+      details: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 }
