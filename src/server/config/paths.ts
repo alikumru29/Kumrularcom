@@ -7,9 +7,7 @@ const __dirname = dirname(__filename);
 // Get root directory based on environment
 const getRootDir = () => {
   if (process.env.NODE_ENV === "production") {
-    return (
-      process.env.PASSENGER_APP_ROOT || "/var/www/vhosts/kumrular.com/httpdocs"
-    );
+    return join(__dirname, "../../..");
   }
   return join(__dirname, "../../..");
 };

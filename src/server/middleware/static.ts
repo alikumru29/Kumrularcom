@@ -1,7 +1,7 @@
-import express, { Response } from "express";
+import express from "express";
 import { ExpressMiddleware } from "../types/express.js";
-import { paths } from "../config/paths.js";
 import { MIME_TYPES, HEADERS, CACHE_CONTROL } from "../config/constants.js";
+import { getClientDistPath } from "../utils/path.js";
 
 const setMimeType: ExpressMiddleware = (req, res, next) => {
   const ext = req.path.split(".").pop()?.toLowerCase();
@@ -48,11 +48,9 @@ const setMimeType: ExpressMiddleware = (req, res, next) => {
   next();
 };
 
-const setStaticHeaders = (res: Response, path: string) => {
-  // Set no-sniff header for security
+const setStaticHeaders = (res: express.Response, path: string) => {
   res.setHeader(HEADERS.SECURITY.NO_SNIFF, "nosniff");
 
-  // Set caching headers
   if (path.includes("/assets/")) {
     res.setHeader(HEADERS.CACHE_CONTROL, CACHE_CONTROL.PUBLIC_LONG);
   } else {
@@ -61,7 +59,7 @@ const setStaticHeaders = (res: Response, path: string) => {
 };
 
 // Create static middleware with options
-const staticFiles = express.static(paths.client.dist, {
+const staticFiles = express.static(getClientDistPath(), {
   index: false,
   etag: true,
   lastModified: true,
