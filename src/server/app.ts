@@ -2,7 +2,6 @@ import express from "express";
 import { corsMiddleware } from "./middleware/cors.js";
 import { securityMiddleware } from "./middleware/security.js";
 import { staticMiddleware } from "./middleware/static.js";
-import { apiMiddleware } from "./middleware/api.js";
 import { apiRoutes } from "./routes/api.js";
 import { spaRoutes } from "./routes/spa.js";
 import { startProductUpdateScheduler } from "./services/scheduler.js";
@@ -17,14 +16,17 @@ export async function createApp() {
   app.use(corsMiddleware);
   app.use(express.json());
   app.use(securityMiddleware);
-  app.use(apiMiddleware);
 
-  // Routes
+  // API routes must come FIRST, before any static or SPA routes
   app.use("/api", apiRoutes);
+
+  // Static files come after API but before SPA
   app.use(staticMiddleware);
+
+  // SPA routes come last
   app.use(spaRoutes);
 
-  // Error handling middleware
+  // Error handling
   app.use(errorHandler);
 
   // Start scheduler
@@ -34,10 +36,11 @@ export async function createApp() {
     logger.error("Scheduler error:", error);
   }
 
-  // Only start server if not running under Passenger
+  // Start server if not running under Passenger
   if (!env.isPassenger) {
-    app.listen(env.port, () => {
-      logger.info(`Server running on port ${env.port} in ${env.nodeEnv} mode`);
+    const port = env.port || 4000;
+    app.listen(port, () => {
+      logger.info(`Server running on port ${port} in ${env.nodeEnv} mode`);
     });
   }
 
