@@ -1,0 +1,66 @@
+{
+  "brands": {
+    "vitra": {
+      "name": "VitrA",
+      "description": "VitrA, 1942 yılında kurulmuş, banyo kültürünü şekillendiren, yenilikçi tasarımları ve üstün teknolojisiyle öne çıkan global bir markadır.",
+      "categories": [
+        "Lavabolar",
+        "Klozetler",
+        "Banyo Mobilyaları",
+        "Armatürler",
+        "Duş Sistemleri"
+      ],
+      "features": [
+        "Tasarım ödüllü koleksiyonlar",
+        "Su tasarruflu teknolojiler",
+        "Hijyen+ teknolojisi",
+        "Akıllı klozet sistemleri"
+      ]
+    },
+    "artema": {
+      "name": "Artema",
+      "description": "Artema, 1950 yılından bu yana armatür ve banyo aksesuarları üretiminde Türkiye'nin lider markasıdır.",
+      "categories": ["Armatürler", "Duş Sistemleri", "Banyo Aksesuarları"],
+      "features": [
+        "Su ve enerji tasarrufu",
+        "Akıllı armatür teknolojileri",
+        "Uzun ömürlü kartuş sistemleri",
+        "Çevre dostu üretim"
+      ]
+    }
+  },
+  "categories": {
+    "bathroom": {
+      "title": "Banyo Seramikleri",
+      "description": "Modern ve klasik tasarımlarla banyonuzu kişiselleştirin",
+      "subcategories": [
+        {
+          "title": "Duvar Seramikleri",
+          "items": [
+            "Büyük Format Seramikler",
+            "Dekoratif Seramikler",
+            "Mozaikler"
+          ],
+          "features": [
+            "Kolay temizlenebilir yüzey",
+            "Antibakteriyel özellik",
+            "Dayanıklı malzeme"
+          ]
+        },
+        {
+          "title": "Yer Seramikleri",
+          "items": [
+            "Porselen Karolar",
+            "Kaydırmaz Seramikler",
+            "Dış Mekan Seramikleri"
+          ],
+          "features": [
+            "Yüksek aşınma direnci",
+            "Kaymaz yüzey",
+            "Su emme direnci"
+          ]
+        }
+      ]
+    }
+  }
+}

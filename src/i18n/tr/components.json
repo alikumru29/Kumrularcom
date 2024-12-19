@@ -1,0 +1,78 @@
+{
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Size en uygun çözümü sunmak için her zaman yanınızdayız",
+    "address": {
+      "title": "Adres",
+      "value": "Turgutreis Mah. Demokrasi Cad. No:219\nSultanbeyli, İstanbul"
+    },
+    "phone": {
+      "title": "Telefon",
+      "value": "+90 (216) 398 47 64"
+    },
+    "email": {
+      "title": "E-posta",
+      "value": "info@kumrular.com"
+    }
+  },
+  "contactCTA": {
+    "title": "Daha Fazla Bilgi Almak İster misiniz?",
+    "description": "Uzman ekibimiz size en uygun çözümü sunmak için hazır. Hemen iletişime geçin!",
+    "buttons": {
+      "call": "Hemen Arayın",
+      "email": "E-posta Gönderin"
+    }
+  },
+  "whyUs": {
+    "title": "Neden Kumrular Seramik?",
+    "features": {
+      "experience": {
+        "title": "38 Yıllık Deneyim",
+        "description": "19185'ten beri İstanbul'da banyo ve seramik sektörünün öncü firmalarından biri olarak hizmet veriyoruz."
+      },
+      "brands": {
+        "title": "Premium Markalar",
+        "description": "Türkiye ve Avrupa'nın önde gelen markalarının yetkili satıcısıyız."
+      },
+      "service": {
+        "title": "Profesyonel Hizmet",
+        "description": "Uzman ekibimizle projelendirme ve uygulama desteği sağlıyoruz."
+      }
+    },
+    "shipping": {
+      "title": "Uluslararası Teslimat",
+      "description": "FOB, CIF ve EXW teslim şartlarıyla dünya genelinde güvenli ve hızlı teslimat hizmeti sunuyoruz. ISO 9001:2015 kalite standartlarına uygun olarak gerçekleştirdiğimiz ihracat operasyonlarımızla, ürünlerinizi dünyanın her yerine ulaştırıyoruz.",
+      "featuresList": [
+        "Uluslararası standartlara uygun paketleme",
+        "Gümrük ve dokümantasyon desteği",
+        "Konteyner ve parsiyel yükleme seçenekleri"
+      ]
+    }
+  },
+  "aboutFeatures": {
+    "experience": {
+      "title": "38 Yıllık Deneyim",
+      "description": "1985'ten beri İstanbul'da banyo ve seramik sektörünün öncü firmalarından biri olarak hizmet veriyoruz."
+    },
+    "brands": {
+      "title": "Premium Markalar",
+      "description": "VitrA, Artema, ECA, Kale, Serel gibi sektörün lider markalarının yetkili satıcısıyız."
+    },
+    "expertise": {
+      "title": "Uzman Kadro",
+      "description": "Deneyimli ekibimizle projelendirmeden uygulamaya kadar tüm süreçlerde yanınızdayız."
+    },
+    "support": {
+      "title": "Teknik Destek",
+      "description": "Satış sonrası teknik destek ve servis hizmetlerimizle sorunlarınıza hızlı çözümler sunuyoruz."
+    },
+    "delivery": {
+      "title": "Hızlı Teslimat",
+      "description": "Geniş stok ağımız sayesinde siparişlerinizi en kısa sürede teslim ediyoruz."
+    },
+    "satisfaction": {
+      "title": "Müşteri Memnuniyeti",
+      "description": "Müşteri memnuniyetini her şeyin üstünde tutarak kaliteli hizmet sunuyoruz."
+    }
+  }
+}

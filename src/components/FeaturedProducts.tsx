@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import ResponsiveContainer from "./ResponsiveContainer";
 import LoadingSpinner from "./LoadingSpinner";
 
 export default function FeaturedProducts() {
+  const { t } = useTranslation();
   const { products, loading, error } = useProducts();
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -38,11 +40,10 @@ export default function FeaturedProducts() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gradient mb-6">
-            Öne Çıkan Ürünler
+            {t("components.featuredProducts.title")}
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            En son teknoloji ve tasarım trendleriyle üretilen premium banyo
-            ürünlerimiz
+            {t("components.featuredProducts.subtitle")}
           </p>
         </motion.div>
 
@@ -80,7 +81,9 @@ export default function FeaturedProducts() {
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                          <span className="text-gray-400">Görsel Yok</span>
+                          <span className="text-gray-400">
+                            {t("common.notFound")}
+                          </span>
                         </div>
                       )}
                     </div>
@@ -96,7 +99,7 @@ export default function FeaturedProducts() {
                         {product.category}
                       </p>
                       <button className="w-full bg-primary-600 text-white py-2 rounded-md hover:bg-primary-700 transition-colors">
-                        İncele
+                        {t("components.featuredProducts.explore")}
                       </button>
                     </div>
                   </div>
@@ -118,7 +121,7 @@ export default function FeaturedProducts() {
             to="/urunler"
             className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-full hover:shadow-lg transition-all duration-300"
           >
-            Tüm Ürünleri Görüntüle
+            {t("components.featuredProducts.viewAll")}
           </Link>
         </div>
       </ResponsiveContainer>

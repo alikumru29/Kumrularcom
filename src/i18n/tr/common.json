@@ -1,0 +1,18 @@
+{
+  "buttons": {
+    "explore": "KEŞFET",
+    "details": "Detaylı Bilgi",
+    "contact": "İletişime Geç",
+    "call": "Hemen Arayın",
+    "email": "E-posta Gönderin",
+    "officialWebsite": "Resmi Web Sitesi"
+  },
+  "features": {
+    "title": "Özellikler",
+    "products": "Ürünler"
+  },
+  "loading": "Yükleniyor...",
+  "error": "Bir hata oluştu",
+  "notFound": "Bulunamadı",
+  "moreCategories": "+{{count}} daha fazla"
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import SEOHead from "../components/SEOHead";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import BrandCard from "../components/BrandCard";
@@ -7,21 +8,22 @@ import { brands } from "../data/brands";
 import { motion } from "framer-motion";
 
 export default function BrandsPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEOHead
-        title="Markalarımız"
-        description="VitrA, Artema, ECA, Kale, Serel ve daha birçok premium markanın yetkili satıcısı. Kaliteli ve güvenilir banyo ürünleri için doğru adres."
+        title={t("seo:brands.title")}
+        description={t("seo:brands.description")}
         canonical="/markalar"
       />
 
       <PageHeader
-        title="Çalıştığımız Markalar"
-        description="Türkiye ve dünyanın önde gelen markalarıyla işbirliği yaparak size en kaliteli ürünleri sunuyoruz."
+        title={t("pages:brands.header.title")}
+        description={t("pages:brands.header.description")}
         image="https://images.unsplash.com/photo-1584622650111-993a426fbf0a"
       />
 
-      {/* Brands Grid */}
       <section className="py-16">
         <ResponsiveContainer>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -39,27 +41,18 @@ export default function BrandsPage() {
         </ResponsiveContainer>
       </section>
 
-      {/* SEO Content */}
       <section className="py-16 bg-gradient-to-br from-slate-50 to-slate-100">
         <ResponsiveContainer>
           <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-bold text-gradient mb-8 text-center">
-              Premium Marka Ortaklıklarımız
+              {t("pages:brands.partnerships.title")}
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <p>
-                  Kumrular Seramik olarak, sektörün lider markalarıyla
-                  kurduğumuz güçlü işbirlikleri sayesinde, müşterilerimize en
-                  kaliteli ve yenilikçi ürünleri sunuyoruz.
-                </p>
+                <p>{t("pages:brands.partnerships.description1")}</p>
               </div>
               <div>
-                <p>
-                  Showroom'umuzda bu premium markaların en yeni koleksiyonlarını
-                  ve trend ürünlerini yakından inceleyebilir, uzman ekibimizden
-                  detaylı bilgi alabilirsiniz.
-                </p>
+                <p>{t("pages:brands.partnerships.description2")}</p>
               </div>
             </div>
           </div>

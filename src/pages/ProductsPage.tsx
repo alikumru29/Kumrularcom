@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import SEOHead from "../components/SEOHead";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import ProductFilters from "../components/ProductFilters";
@@ -8,6 +9,7 @@ import PageHeader from "../components/PageHeader";
 import { useProducts } from "../hooks/useProducts";
 
 export default function ProductsPage() {
+  const { t } = useTranslation();
   const {
     products,
     loading,
@@ -26,22 +28,20 @@ export default function ProductsPage() {
   return (
     <>
       <SEOHead
-        title="Ürünlerimiz"
-        description="Banyo ve seramik ürünleri, armatürler, vitrifiye, banyo mobilyaları ve yapı kimyasalları. Premium markalardan geniş ürün yelpazesi."
+        title={t("seo.products.title")}
+        description={t("seo.products.description")}
         canonical="/urunler"
       />
 
       <PageHeader
-        title="Ürünlerimiz"
-        description="Premium markalardan seçilmiş geniş ürün yelpazemizi keşfedin. Kalite ve estetiği bir arada sunuyoruz."
+        title={t("pages.products.header.title")}
+        description={t("pages.products.header.description")}
         image="https://images.unsplash.com/photo-1620626011761-996317b8d101"
       />
 
-      {/* Products Section */}
       <section className="py-16">
         <ResponsiveContainer>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Filters */}
             <div className="lg:col-span-1">
               <ProductFilters
                 products={products}
@@ -50,15 +50,19 @@ export default function ProductsPage() {
               />
             </div>
 
-            {/* Products Grid */}
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {paginatedProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
+              {paginatedProducts.length === 0 ? (
+                <p className="text-center text-gray-500">
+                  {t("pages.products.notFound")}
+                </p>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {paginatedProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              )}
 
-              {/* Pagination */}
               <div className="mt-8">
                 <Pagination
                   currentPage={currentPage}

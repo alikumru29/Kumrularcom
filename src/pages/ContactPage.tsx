@@ -1,22 +1,24 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import SEOHead from "../components/SEOHead";
 
 export default function ContactPage() {
+  const { t } = useTranslation(["pages", "common"]);
+
   return (
     <>
       <SEOHead
-        title="İletişim"
-        description="Kumrular Seramik iletişim bilgileri. Adres: Turgutreis Mah. Demokrasi Cad. No:219 Sultanbeyli, İstanbul. Telefon: +90 216 398 47 64"
-        canonical="/contact"
+        title={t("seo:contact.title")}
+        description={t("seo:contact.description")}
+        canonical="/iletisim"
       />
       <div className="pt-24">
-        {/* Hero Section */}
         <section className="relative h-[40vh] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1600566752355-35792bedcfea"
-            alt="İletişim"
+            alt={t("pages:contact.header.title")}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-900/50" />
@@ -28,92 +30,71 @@ export default function ContactPage() {
                 transition={{ duration: 0.8 }}
                 className="max-w-3xl text-white"
               >
-                <h1 className="text-5xl font-bold mb-6">İletişim</h1>
+                <h1 className="text-5xl font-bold mb-6">
+                  {t("pages:contact.header.title")}
+                </h1>
                 <p className="text-xl text-slate-200">
-                  Size yardımcı olmak için buradayız
+                  {t("pages:contact.header.subtitle")}
                 </p>
               </motion.div>
             </ResponsiveContainer>
           </div>
         </section>
 
-        {/* Contact Info & Map Section */}
         <section className="py-24 bg-gradient-to-br from-slate-50 to-slate-100">
           <ResponsiveContainer>
             <div className="grid lg:grid-cols-2 gap-12">
-              {/* Contact Information */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 className="space-y-8"
               >
-                <div className="bg-white p-8 rounded-xl shadow-lg">
-                  <div className="flex items-start space-x-4">
-                    <MapPin className="w-6 h-6 text-primary-500 mt-1" />
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">Adres</h3>
-                      <p className="text-slate-600">
-                        Turgutreis Mah. Demokrasi Cad. No:219
-                        <br />
-                        Sultanbeyli, İstanbul
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <ContactInfoCard
+                  icon={<MapPin className="w-6 h-6 text-primary-500 mt-1" />}
+                  title={t("pages:contact.info.address.title")}
+                  content={t("pages:contact.info.address.value")}
+                />
 
-                <div className="bg-white p-8 rounded-xl shadow-lg">
-                  <div className="flex items-start space-x-4">
-                    <Phone className="w-6 h-6 text-primary-500 mt-1" />
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">Telefon</h3>
-                      <p className="text-slate-600">
-                        <a
-                          href="tel:+902163984764"
-                          className="hover:text-primary-600 transition-colors"
-                        >
-                          +90 (216) 398 47 64
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <ContactInfoCard
+                  icon={<Phone className="w-6 h-6 text-primary-500 mt-1" />}
+                  title={t("pages:contact.info.phone.title")}
+                  content={
+                    <a
+                      href="tel:+902163984764"
+                      className="hover:text-primary-600 transition-colors"
+                    >
+                      {t("pages:contact.info.phone.value")}
+                    </a>
+                  }
+                />
 
-                <div className="bg-white p-8 rounded-xl shadow-lg">
-                  <div className="flex items-start space-x-4">
-                    <Mail className="w-6 h-6 text-primary-500 mt-1" />
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">E-posta</h3>
-                      <p className="text-slate-600">
-                        <a
-                          href="mailto:info@kumrular.com"
-                          className="hover:text-primary-600 transition-colors"
-                        >
-                          info@kumrular.com
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <ContactInfoCard
+                  icon={<Mail className="w-6 h-6 text-primary-500 mt-1" />}
+                  title={t("pages:contact.info.email.title")}
+                  content={
+                    <a
+                      href="mailto:info@kumrular.com"
+                      className="hover:text-primary-600 transition-colors"
+                    >
+                      {t("pages:contact.info.email.value")}
+                    </a>
+                  }
+                />
 
-                <div className="bg-white p-8 rounded-xl shadow-lg">
-                  <div className="flex items-start space-x-4">
-                    <Clock className="w-6 h-6 text-primary-500 mt-1" />
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        Çalışma Saatleri
-                      </h3>
-                      <div className="text-slate-600 space-y-2">
-                        <p>Pazartesi - Cuma: 09:00 - 18:30</p>
-                        <p>Cumartesi: 09:00 - 17:00</p>
-                        <p>Pazar: Kapalı</p>
-                      </div>
+                <ContactInfoCard
+                  icon={<Clock className="w-6 h-6 text-primary-500 mt-1" />}
+                  title={t("pages:contact.info.hours.title")}
+                  content={
+                    <div className="space-y-2">
+                      <p>{t("pages:contact.info.hours.weekdays")}</p>
+                      <p>{t("pages:contact.info.hours.saturday")}</p>
+                      <p>{t("pages:contact.info.hours.sunday")}</p>
                     </div>
-                  </div>
-                </div>
+                  }
+                />
               </motion.div>
 
-              {/* Google Maps */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -135,5 +116,25 @@ export default function ContactPage() {
         </section>
       </div>
     </>
+  );
+}
+
+interface ContactInfoCardProps {
+  icon: React.ReactNode;
+  title: string;
+  content: React.ReactNode;
+}
+
+function ContactInfoCard({ icon, title, content }: ContactInfoCardProps) {
+  return (
+    <div className="bg-white p-8 rounded-xl shadow-lg">
+      <div className="flex items-start space-x-4">
+        {icon}
+        <div>
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <div className="text-slate-600 whitespace-pre-line">{content}</div>
+        </div>
+      </div>
+    </div>
   );
 }

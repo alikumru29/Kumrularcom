@@ -1,9 +1,7 @@
-import path from "path";
-
+/** @type {import('i18next-scanner').Config} */
 export default {
   input: [
     "src/**/*.{js,jsx,ts,tsx}",
-    // Exclude test files and node_modules
     "!src/**/*.test.{js,jsx,ts,tsx}",
     "!src/i18n/**",
     "!**/node_modules/**",
@@ -21,7 +19,7 @@ export default {
       component: "Trans",
       extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
-    lngs: ["tr", "en"],
+    lngs: ["tr"],
     defaultLng: "tr",
     defaultNs: "common",
     defaultValue: "",
@@ -33,8 +31,6 @@ export default {
     },
     nsSeparator: ":",
     keySeparator: ".",
-    pluralSeparator: "_",
-    contextSeparator: "_",
     interpolation: {
       prefix: "{{",
       suffix: "}}",

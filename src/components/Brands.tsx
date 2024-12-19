@@ -1,16 +1,18 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import BrandCard from "./BrandCard";
 import { brands } from "../data/brands";
 
 export default function Brands() {
+  const { t } = useTranslation();
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
     if (!carouselRef.current) return;
 
-    const scrollAmount = carouselRef.current.offsetWidth * 0.4; // Adjusted to show 2.5 cards
+    const scrollAmount = carouselRef.current.offsetWidth * 0.4;
     carouselRef.current.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
@@ -30,11 +32,10 @@ export default function Brands() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gradient mb-4">
-            Çalıştığımız Premium Markalar
+            {t("pages:brands.header.title")}
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Türkiye ve dünyadan seçkin markaların en yeni koleksiyonlarını
-            sizlerle buluşturuyoruz.
+            {t("pages:brands.header.description")}
           </p>
         </motion.div>
 
@@ -49,11 +50,6 @@ export default function Brands() {
           <div
             ref={carouselRef}
             className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-6 pb-4"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-              WebkitOverflowScrolling: "touch",
-            }}
           >
             {brands.map((brand) => (
               <div

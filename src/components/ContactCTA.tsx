@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Phone, Mail } from "lucide-react";
 import ResponsiveContainer from "./ResponsiveContainer";
 
 export default function ContactCTA() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 to-slate-100">
       <ResponsiveContainer>
@@ -14,11 +17,10 @@ export default function ContactCTA() {
         >
           <div className="p-12 text-center text-white">
             <h2 className="text-3xl font-bold mb-4">
-              Daha Fazla Bilgi Almak İster misiniz?
+              {t("components:contactCTA.title")}
             </h2>
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              Uzman ekibimiz size en uygun çözümü sunmak için hazır. Hemen
-              iletişime geçin!
+              {t("components:contactCTA.description")}
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -27,14 +29,14 @@ export default function ContactCTA() {
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 rounded-full hover:bg-opacity-90 transition-colors"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Hemen Arayın
+                {t("components:contactCTA.buttons.call")}
               </a>
               <a
                 href="mailto:info@kumrular.com"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors"
               >
                 <Mail className="w-5 h-5 mr-2" />
-                E-posta Gönderin
+                {t("components:contactCTA.buttons.email")}
               </a>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
   Phone,
@@ -10,18 +11,18 @@ import {
 import ResponsiveContainer from "./ResponsiveContainer";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gradient-to-br from-slate-800 to-slate-900 text-slate-300">
       <ResponsiveContainer>
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Kurumsal */}
           <div>
             <h3 className="text-2xl font-bold text-white mb-6">
               Kumrular Seramik
             </h3>
             <p className="text-slate-400 mb-4">
-              1985'ten beri İstanbul'da premium banyo ürünleri ve seramik
-              çözümleri sunuyoruz.
+              {t("components.footer.company.description")}
             </p>
             <div className="flex space-x-4">
               <a
@@ -45,58 +46,34 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Kategoriler */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">
-              Kategoriler
+              {t("components.footer.categories.title")}
             </h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  to="/kategoriler/seramik"
-                  className="hover:text-white transition-colors"
-                >
-                  Banyo Seramikleri
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/kategoriler/bathing-areas"
-                  className="hover:text-white transition-colors"
-                >
-                  Yıkanma Alanları
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/kategoriler/construction-chemicals"
-                  className="hover:text-white transition-colors"
-                >
-                  Yapı Kimyasalları
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/kategoriler/accessories"
-                  className="hover:text-white transition-colors"
-                >
-                  Banyo Aksesuarları
-                </Link>
-              </li>
+              {Object.entries(
+                t("components.footer.categories.items", { returnObjects: true })
+              ).map(([key, value]) => (
+                <li key={key}>
+                  <Link
+                    to={`/categories/${key}`}
+                    className="hover:text-white transition-colors"
+                  >
+                    {value}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* İletişim */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-6">İletişim</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">
+              {t("components.contact.title")}
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-3 mt-1 text-primary-500" />
-                <span>
-                  Turgutreis Mah. Demokrasi Cad. No:219
-                  <br />
-                  Sultanbeyli, İstanbul
-                </span>
+                <span>{t("components.contact.address.value")}</span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-primary-500" />
@@ -104,7 +81,7 @@ export default function Footer() {
                   href="tel:+902163984764"
                   className="hover:text-white transition-colors"
                 >
-                  +90 (216) 398 47 64
+                  {t("components.contact.phone.value")}
                 </a>
               </li>
               <li className="flex items-center">
@@ -113,29 +90,25 @@ export default function Footer() {
                   href="mailto:info@kumrular.com"
                   className="hover:text-white transition-colors"
                 >
-                  info@kumrular.com
+                  {t("components.contact.email.value")}
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Çalışma Saatleri */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">
-              Çalışma Saatleri
+              {t("components.footer.workingHours.title")}
             </h3>
             <ul className="space-y-3">
               <li className="flex justify-between">
-                <span>Pazartesi - Cuma:</span>
-                <span>09:00 - 18:30</span>
+                {t("components.footer.workingHours.weekdays")}
               </li>
               <li className="flex justify-between">
-                <span>Cumartesi:</span>
-                <span>09:00 - 17:00</span>
+                {t("components.footer.workingHours.saturday")}
               </li>
               <li className="flex justify-between">
-                <span>Pazar:</span>
-                <span>Kapalı</span>
+                {t("components.footer.workingHours.sunday")}
               </li>
             </ul>
           </div>
@@ -143,7 +116,9 @@ export default function Footer() {
 
         <div className="py-6 border-t border-slate-700 text-center text-slate-400">
           <p>
-            © {new Date().getFullYear()} Kumrular Seramik. Tüm hakları saklıdır.
+            {t("components.footer.copyright", {
+              year: new Date().getFullYear(),
+            })}
           </p>
         </div>
       </ResponsiveContainer>

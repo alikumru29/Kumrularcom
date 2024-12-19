@@ -1,12 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { categories } from "../data/categories";
 import { Check, ChevronRight, Phone, Mail } from "lucide-react";
+import { categories } from "../data/categories";
 import ResponsiveContainer from "../components/ResponsiveContainer";
 import CategoryHero from "../components/CategoryHero";
 import SEOHead from "../components/SEOHead";
 
 export default function CategoryPage() {
+  const { t } = useTranslation();
   const { categoryId } = useParams<{ categoryId: string }>();
   const category = categories.find((c) => c.id === categoryId);
 
@@ -14,12 +16,12 @@ export default function CategoryPage() {
     return (
       <>
         <SEOHead
-          title="Kategori Bulunamadı"
-          description="Aradığınız kategori bulunamadı. Lütfen diğer kategorilerimizi inceleyin."
+          title={t("common.notFound")}
+          description={t("pages.categories.notFound")}
           canonical={`/kategoriler/${categoryId}`}
         />
         <div className="min-h-screen flex items-center justify-center">
-          <p className="text-xl text-slate-600">Kategori bulunamadı.</p>
+          <p className="text-xl text-slate-600">{t("common.notFound")}</p>
         </div>
       </>
     );
@@ -60,7 +62,7 @@ export default function CategoryPage() {
 
                     <div className="mb-6">
                       <h3 className="text-lg font-semibold text-slate-700 mb-3">
-                        Ürünler
+                        {t("common.features.products")}
                       </h3>
                       <ul className="space-y-2">
                         {subcategory.items.map((item, idx) => (
@@ -77,7 +79,7 @@ export default function CategoryPage() {
 
                     <div>
                       <h3 className="text-lg font-semibold text-slate-700 mb-3">
-                        Özellikler
+                        {t("common.features.title")}
                       </h3>
                       <ul className="space-y-2">
                         {subcategory.features.map((feature, idx) => (
@@ -97,14 +99,13 @@ export default function CategoryPage() {
 
               <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
                 <h2 className="text-2xl font-bold text-gradient mb-4">
-                  Detaylı Bilgi
+                  {t("common:buttons.details")}
                 </h2>
                 <div className="prose max-w-none text-slate-600">
                   <p>{category.seoContent}</p>
                 </div>
               </div>
 
-              {/* Call to Action Section */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -113,26 +114,23 @@ export default function CategoryPage() {
               >
                 <div className="text-center">
                   <h2 className="text-2xl font-bold mb-4">
-                    Daha Fazla Bilgi Almak İster misiniz?
+                    {t("pages.products.detail.contact.title")}
                   </h2>
-                  <p className="mb-8">
-                    Uzman ekibimiz size en uygun çözümü sunmak için hazır.
-                  </p>
 
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                      href="tel:+903121234567"
-                      className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 rounded-full hover:bg-opacity-90 transition-colors"
+                      href="tel:+902163984764"
+                      className="flex items-center justify-center px-6 py-3 bg-white text-primary-600 rounded-full hover:bg-opacity-90 transition-colors"
                     >
                       <Phone className="w-5 h-5 mr-2" />
-                      Hemen Arayın
+                      {t("common.buttons.call")}
                     </a>
                     <a
-                      href="mailto:info@kumrularseramik.com"
-                      className="inline-flex items-center justify-center px-6 py-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors"
+                      href="mailto:info@kumrular.com"
+                      className="flex items-center justify-center px-6 py-3 bg-white/10 text-white rounded-full hover:bg-white/20 transition-colors"
                     >
                       <Mail className="w-5 h-5 mr-2" />
-                      E-posta Gönderin
+                      {t("common.buttons.email")}
                     </a>
                   </div>
                 </div>

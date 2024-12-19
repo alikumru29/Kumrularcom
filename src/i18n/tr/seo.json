@@ -1,0 +1,26 @@
+{
+  "home": {
+    "title": "Ana Sayfa",
+    "description": "1985'ten beri İstanbul'da premium banyo ürünleri, seramik ve yapı malzemeleri. VitrA, Artema, ECA, Kale ve daha birçok markanın yetkili satıcısı."
+  },
+  "about": {
+    "title": "Neden Biz?",
+    "description": "1985'ten beri İstanbul Sultanbeyli'de hizmet veren Kumrular Seramik, premium banyo ürünleri ve seramik çözümleri sunan güvenilir markanız."
+  },
+  "products": {
+    "title": "Ürünlerimiz",
+    "description": "Banyo ve seramik ürünleri, armatürler, vitrifiye, banyo mobilyaları ve yapı kimyasalları. Premium markalardan geniş ürün yelpazesi."
+  },
+  "categories": {
+    "title": "Ürün Kategorileri",
+    "description": "Banyo seramikleri, vitrifiye ürünleri, armatürler, banyo mobilyaları ve daha fazlası. Premium markaların en geniş ürün yelpazesi Kumrular Seramik'te."
+  },
+  "brands": {
+    "title": "Markalarımız",
+    "description": "VitrA, Artema, ECA, Kale, Serel ve daha birçok premium markanın yetkili satıcısı. Kaliteli ve güvenilir banyo ürünleri için doğru adres."
+  },
+  "contact": {
+    "title": "İletişim",
+    "description": "Kumrular Seramik iletişim bilgileri. Adres: Turgutreis Mah. Demokrasi Cad. No:219 Sultanbeyli, İstanbul. Telefon: +90 216 398 47 64"
+  }
+}

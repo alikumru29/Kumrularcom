@@ -1,0 +1,88 @@
+{
+  "contact": {
+    "header": {
+      "title": "İletişim",
+      "subtitle": "Size en uygun çözümü sunmak için her zaman yanınızdayız"
+    },
+    "info": {
+      "address": {
+        "title": "Adres",
+        "value": "Turgutreis Mah. Demokrasi Cad. No:219\nSultanbeyli, İstanbul"
+      },
+      "phone": {
+        "title": "Telefon",
+        "value": "+90 (216) 398 47 64"
+      },
+      "email": {
+        "title": "E-posta",
+        "value": "info@kumrular.com"
+      },
+      "hours": {
+        "title": "Çalışma Saatleri",
+        "weekdays": "Pazartesi - Cuma: 09:00 - 18:30",
+        "saturday": "Cumartesi: 09:00 - 17:00",
+        "sunday": "Pazar: Kapalı"
+      }
+    }
+  },
+  "about": {
+    "header": {
+      "title": "Neden Kumrular Seramik?",
+      "description": "38 yıllık tecrübemiz ve güvenilir hizmet anlayışımızla yanınızdayız"
+    },
+    "quality": {
+      "title": "Kalite ve Güvenin Adresi",
+      "brands": {
+        "title": "Premium Marka İşbirlikleri",
+        "description1": "1985 yılından bu yana VitrA, Artema, ECA, Kale, Serel gibi Türkiye'nin ve dünyanın önde gelen markalarının yetkili satıcısı olarak hizmet veriyoruz. Bu güçlü işbirliklerimiz sayesinde, müşterilerimize en kaliteli ve yenilikçi ürünleri sunabiliyoruz.",
+        "description2": "Her markadan geniş ürün yelpazemizle, farklı bütçe ve zevklere hitap eden çözümler üretiyoruz. Premium markalarla çalışmanın getirdiği deneyim ve güvenle, projelerinize değer katıyoruz."
+      },
+      "service": {
+        "title": "Profesyonel Hizmet Anlayışı",
+        "description1": "Uzman kadromuzla projelendirme aşamasından ürün seçimine, satış sonrası hizmetlere kadar tüm süreçlerde yanınızdayız. Showroom'umuzda en son banyo trendlerini ve yenilikçi tasarımları yakından inceleyebilir, teknik ekibimizden detaylı bilgi alabilirsiniz.",
+        "description2": "Müşteri memnuniyetini her şeyin üstünde tutan hizmet anlayışımızla, İstanbul'un en güvenilir banyo ve seramik mağazalarından biri olmaktan gurur duyuyoruz."
+      }
+    }
+  },
+  "products": {
+    "breadcrumb": {
+      "home": "Ana Sayfa",
+      "products": "Ürünler"
+    },
+    "detail": {
+      "productDetails": "Ürün Detayları",
+      "technicalSpecs": "Teknik Özellikler",
+      "contact": {
+        "title": "Ürün Hakkında Bilgi Alın",
+        "call": "Hemen Arayın",
+        "email": "E-posta Gönderin"
+      }
+    }
+  },
+  "brands": {
+    "header": {
+      "title": "Çalıştığımız Markalar",
+      "description": "Türkiye ve dünyanın önde gelen markalarıyla işbirliği yaparak size en kaliteli ürünleri sunuyoruz."
+    },
+    "partnerships": {
+      "title": "Premium Marka Ortaklıklarımız",
+      "description1": "Kumrular Seramik olarak, sektörün lider markalarıyla kurduğumuz güçlü işbirlikleri sayesinde, müşterilerimize en kaliteli ve yenilikçi ürünleri sunuyoruz.",
+      "description2": "Showroom'umuzda bu premium markaların en yeni koleksiyonlarını ve trend ürünlerini yakından inceleyebilir, uzman ekibimizden detaylı bilgi alabilirsiniz."
+    },
+    "notFound": "Aradığınız marka bulunamadı. Lütfen diğer markalarımızı inceleyin.",
+    "detail": {
+      "products": {
+        "title": "Ürün Kategorileri",
+        "empty": "Bu markaya ait ürün kategorisi bulunamadı."
+      },
+      "features": {
+        "title": "Özellikler",
+        "empty": "Bu markaya ait özellik bulunamadı."
+      }
+    }
+  },
+  "categories": {
+    "title": "Ürün Kategorilerimiz",
+    "subtitle": "Modern tasarım ve yenilikçi teknolojilerle donatılmış geniş ürün yelpazemizi keşfedin"
+  }
+}

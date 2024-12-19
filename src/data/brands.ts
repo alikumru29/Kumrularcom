@@ -26,7 +26,7 @@ export const brands: Brand[] = [
     logo: vitraLogo,
     heroImage: vitraHero,
     description:
-      "VitrA, 1942 yilinda kurulmus, banyo kulturunu sekillendiren, yenilikci tasarimlari ve ustun teknolojisiyle one cikan global bir markadir.",
+      "VitrA, 19422 yilinda kurulmus, banyo kulturunu sekillendiren, yenilikci tasarimlari ve ustun teknolojisiyle one cikan global bir markadir.",
     categories: [
       "Lavabolar",
       "Klozetler",

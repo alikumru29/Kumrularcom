@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { categories } from "../data/categories";
@@ -7,21 +8,22 @@ import ContactCTA from "../components/ContactCTA";
 import PageHeader from "../components/PageHeader";
 
 export default function CategoriesPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEOHead
-        title="Ürün Kategorileri"
-        description="Banyo seramikleri, vitrifiye ürünleri, armatürler, banyo mobilyaları ve daha fazlası. Premium markaların en geniş ürün yelpazesi Kumrular Seramik'te."
+        title={t("seo:categories.title")}
+        description={t("seo:categories.description")}
         canonical="/kategoriler"
       />
 
       <PageHeader
-        title="Ürün Kategorilerimiz"
-        description="Modern tasarım ve yenilikçi teknolojilerle donatılmış geniş ürün yelpazemizi keşfedin"
+        title={t("pages:categories.header.title")}
+        description={t("pages:categories.header.description")}
         image={categories[0].banner}
       />
 
-      {/* Categories Grid */}
       <section className="py-16">
         <ResponsiveContainer>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -46,7 +48,7 @@ export default function CategoriesPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="absolute bottom-0 left-0 right-0 p-6">
                           <button className="px-6 py-2 bg-white/10 text-white rounded-full group-hover:bg-white group-hover:text-primary-600 transition-all duration-300">
-                            KEŞFET
+                            {t("common.buttons.explore")}
                           </button>
                         </div>
                       </div>
@@ -82,42 +84,20 @@ export default function CategoriesPage() {
         </ResponsiveContainer>
       </section>
 
-      {/* SEO Content */}
       <section className="py-16 bg-gradient-to-br from-slate-50 to-slate-100">
         <ResponsiveContainer>
           <div className="prose prose-lg max-w-none">
             <h2 className="text-3xl font-bold text-gradient mb-8 text-center">
-              Premium Banyo Çözümleri
+              {t("pages:categories.seo:title")}
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <p>
-                  Kumrular Seramik olarak, modern yaşam alanları için gerekli
-                  tüm banyo ürünlerini tek çatı altında sunuyoruz. Seramikten
-                  vitrifiyeye, armatürlerden banyo mobilyalarına kadar geniş
-                  ürün yelpazemizle, hayalinizdeki banyoyu gerçeğe
-                  dönüştürüyoruz.
-                </p>
-                <p>
-                  Her kategoride sunduğumuz ürünler, sektörün önde gelen
-                  markalarının en yeni ve en kaliteli koleksiyonlarından özenle
-                  seçilmiştir. Müşterilerimize sadece ürün değil, yaşam
-                  kalitesini artıran çözümler sunuyoruz.
-                </p>
+                <p>{t("pages:categories.seo:description1")}</p>
+                <p>{t("pages:categories.seo:description2")}</p>
               </div>
               <div>
-                <p>
-                  Ürün kategorilerimiz, modern tasarım trendleri ve teknolojik
-                  yenilikler göz önünde bulundurularak sürekli
-                  güncellenmektedir. Uzman ekibimiz, projenize en uygun ürünleri
-                  seçmenizde size yardımcı olmak için her zaman hazırdır.
-                </p>
-                <p>
-                  Tüm ürünlerimiz, yüksek kalite standartlarına uygun olarak
-                  üretilmiş olup, uzun yıllar sorunsuz kullanım için
-                  garantilidir. Satış sonrası hizmetlerimizle de müşteri
-                  memnuniyetini en üst düzeyde tutmayı hedefliyoruz.
-                </p>
+                <p>{t("pages:categories.seo:description3")}</p>
+                <p>{t("pages:categories.seo:description4")}</p>
               </div>
             </div>
           </div>

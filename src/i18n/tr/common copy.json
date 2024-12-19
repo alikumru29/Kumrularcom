@@ -1,0 +1,272 @@
+{
+  "seo": {
+    "home": {
+      "title": "Ana Sayfa",
+      "description": "1985'ten beri İstanbul'da premium banyo ürünleri, seramik ve yapı malzemeleri. VitrA, Artema, ECA, Kale ve daha birçok markanın yetkili satıcısı."
+    },
+    "about": {
+      "title": "Neden Biz?",
+      "description": "1985'ten beri İstanbul Sultanbeyli'de hizmet veren Kumrular Seramik, premium banyo ürünleri ve seramik çözümleri sunan güvenilir markanız."
+    },
+    "products": {
+      "title": "Ürünlerimiz",
+      "description": "Banyo ve seramik ürünleri, armatürler, vitrifiye, banyo mobilyaları ve yapı kimyasalları. Premium markalardan geniş ürün yelpazesi."
+    },
+    "categories": {
+      "title": "Ürün Kategorileri",
+      "description": "Banyo seramikleri, vitrifiye ürünleri, armatürler, banyo mobilyaları ve daha fazlası. Premium markaların en geniş ürün yelpazesi Kumrular Seramik'te."
+    },
+    "brands": {
+      "title": "Markalarımız",
+      "description": "VitrA, Artema, ECA, Kale, Serel ve daha birçok premium markanın yetkili satıcısı. Kaliteli ve güvenilir banyo ürünleri için doğru adres."
+    },
+    "contact": {
+      "title": "İletişim",
+      "description": "Kumrular Seramik iletişim bilgileri. Adres: Turgutreis Mah. Demokrasi Cad. No:219 Sultanbeyli, İstanbul. Telefon: +90 216 398 47 64"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "title": "Modern Banyo Tasarımları",
+        "subtitle": "Premium malzemeler ve yenilikçi tasarımlarla banyonuzu sanatsal bir yaşam alanına dönüştürün"
+      },
+      "products": {
+        "title": "Öne Çıkan Ürünler",
+        "subtitle": "En son teknoloji ve tasarım trendleriyle üretilen premium banyo ürünlerimiz"
+      }
+    },
+    "about": {
+      "header": {
+        "title": "Neden Kumrular Seramik?",
+        "description": "38 yıllık tecrübemiz ve güvenilir hizmet anlayışımızla yanınızdayız"
+      },
+      "quality": {
+        "title": "Kalite ve Güvenin Adresi",
+        "brands": {
+          "title": "Premium Marka İşbirlikleri",
+          "description1": "1985 yılından bu yana VitrA, Artema, ECA, Kale, Serel gibi Türkiye'nin ve dünyanın önde gelen markalarının yetkili satıcısı olarak hizmet veriyoruz. Bu güçlü işbirliklerimiz sayesinde, müşterilerimize en kaliteli ve yenilikçi ürünleri sunabiliyoruz.",
+          "description2": "Her markadan geniş ürün yelpazemizle, farklı bütçe ve zevklere hitap eden çözümler üretiyoruz. Premium markalarla çalışmanın getirdiği deneyim ve güvenle, projelerinize değer katıyoruz."
+        },
+        "service": {
+          "title": "Profesyonel Hizmet Anlayışı",
+          "description1": "Uzman kadromuzla projelendirme aşamasından ürün seçimine, satış sonrası hizmetlere kadar tüm süreçlerde yanınızdayız. Showroom'umuzda en son banyo trendlerini ve yenilikçi tasarımları yakından inceleyebilir, teknik ekibimizden detaylı bilgi alabilirsiniz.",
+          "description2": "Müşteri memnuniyetini her şeyin üstünde tutan hizmet anlayışımızla, İstanbul'un en güvenilir banyo ve seramik mağazalarından biri olmaktan gurur duyuyoruz."
+        }
+      }
+    },
+    "products": {
+      "header": {
+        "title": "Ürünlerimiz",
+        "description": "Premium markalardan seçilmiş geniş ürün yelpazemizi keşfedin. Kalite ve estetiği bir arada sunuyoruz."
+      },
+      "notFound": "Ürün bulunamadı",
+      "loading": "Yükleniyor...",
+      "error": "Bir hata oluştu",
+      "breadcrumb": {
+        "home": "Ana Sayfa",
+        "products": "Ürünler"
+      },
+      "detail": {
+        "productDetails": "Ürün Detayları",
+        "technicalSpecs": "Teknik Özellikler",
+        "contact": {
+          "title": "Detaylı Bilgi ve Fiyat İçin",
+          "call": "Hemen Arayın",
+          "email": "E-posta Gönderin"
+        }
+      }
+    },
+    "categories": {
+      "header": {
+        "title": "Ürün Kategorilerimiz",
+        "description": "Modern tasarım ve yenilikçi teknolojilerle donatılmış geniş ürün yelpazemizi keşfedin"
+      },
+      "seo": {
+        "title": "Premium Banyo Çözümleri",
+        "description1": "Kumrular Seramik olarak, modern yaşam alanları için gerekli tüm banyo ürünlerini tek çatı altında sunuyoruz. Seramikten vitrifiyeye, armatürlerden banyo mobilyalarına kadar geniş ürün yelpazemizle, hayalinizdeki banyoyu gerçeğe dönüştürüyoruz.",
+        "description2": "Her kategoride sunduğumuz ürünler, sektörün önde gelen markalarının en yeni ve en kaliteli koleksiyonlarından özenle seçilmiştir. Müşterilerimize sadece ürün değil, yaşam kalitesini artıran çözümler sunuyoruz.",
+        "description3": "Ürün kategorilerimiz, modern tasarım trendleri ve teknolojik yenilikler göz önünde bulundurularak sürekli güncellenmektedir. Uzman ekibimiz, projenize en uygun ürünleri seçmenizde size yardımcı olmak için her zaman hazırdır.",
+        "description4": "Tüm ürünlerimiz, yüksek kalite standartlarına uygun olarak üretilmiş olup, uzun yıllar sorunsuz kullanım için garantilidir. Satış sonrası hizmetlerimizle de müşteri memnuniyetini en üst düzeyde tutmayı hedefliyoruz."
+      }
+    },
+    "brands": {
+      "header": {
+        "title": "Çalıştığımız Markalar",
+        "description": "Türkiye ve dünyanın önde gelen markalarıyla işbirliği yaparak size en kaliteli ürünleri sunuyoruz."
+      },
+      "partnerships": {
+        "title": "Premium Marka Ortaklıklarımız",
+        "description1": "Kumrular Seramik olarak, sektörün lider markalarıyla kurduğumuz güçlü işbirlikleri sayesinde, müşterilerimize en kaliteli ve yenilikçi ürünleri sunuyoruz.",
+        "description2": "Showroom'umuzda bu premium markaların en yeni koleksiyonlarını ve trend ürünlerini yakından inceleyebilir, uzman ekibimizden detaylı bilgi alabilirsiniz."
+      }
+    },
+    "contact": {
+      "header": {
+        "title": "İletişim",
+        "subtitle": "Size yardımcı olmak için buradayız"
+      },
+      "info": {
+        "address": {
+          "title": "Adres",
+          "value": "Turgutreis Mah. Demokrasi Cad. No:219\nSultanbeyli, İstanbul"
+        },
+        "phone": {
+          "title": "Telefon",
+          "value": "+90 (216) 398 47 64"
+        },
+        "email": {
+          "title": "E-posta",
+          "value": "info@kumrular.com"
+        },
+        "hours": {
+          "title": "Çalışma Saatleri",
+          "weekdays": "Pazartesi - Cuma: 09:00 - 18:30",
+          "saturday": "Cumartesi: 09:00 - 17:00",
+          "sunday": "Pazar: Kapalı"
+        }
+      }
+    }
+  },
+  "components": {
+    "contact": {
+      "title": "İletişim",
+      "subtitle": "Size en uygun çözümü sunmak için her zaman yanınızdayız",
+      "address": {
+        "title": "Adres",
+        "value": "Turgutreis Mah. Demokrasi Cad. No:219\nSultanbeyli, İstanbul"
+      },
+      "phone": {
+        "title": "Telefon",
+        "value": "+90 (216) 398 47 64"
+      },
+      "email": {
+        "title": "E-posta",
+        "value": "info@kumrular.com"
+      }
+    },
+    "contactCTA": {
+      "title": "Daha Fazla Bilgi Almak İster misiniz?",
+      "description": "Uzman ekibimiz size en uygun çözümü sunmak için hazır. Hemen iletişime geçin!",
+      "buttons": {
+        "call": "Hemen Arayın",
+        "email": "E-posta Gönderin"
+      }
+    },
+    "featuredProducts": {
+      "title": "Öne Çıkan Ürünler",
+      "subtitle": "En son teknoloji ve tasarım trendleriyle üretilen premium banyo ürünlerimiz",
+      "viewAll": "Tüm Ürünleri Görüntüle",
+      "explore": "İncele"
+    },
+    "footer": {
+      "company": {
+        "description": "1985'ten beri İstanbul'da premium banyo ürünleri ve seramik çözümleri sunuyoruz."
+      },
+      "categories": {
+        "title": "Kategoriler",
+        "items": {
+          "bathroomTiles": "Banyo Seramikleri",
+          "bathingAreas": "Yıkanma Alanları",
+          "constructionChemicals": "Yapı Kimyasalları",
+          "accessories": "Banyo Aksesuarları"
+        }
+      },
+      "workingHours": {
+        "title": "Çalışma Saatleri",
+        "weekdays": "Pazartesi - Cuma: 09:00 - 18:30",
+        "saturday": "Cumartesi: 09:00 - 17:00",
+        "sunday": "Pazar: Kapalı"
+      },
+      "copyright": "© {year} Kumrular Seramik. Tüm hakları saklıdır."
+    },
+    "hero": {
+      "slides": [
+        {
+          "title": "Modern Banyo Tasarımları",
+          "subtitle": "Premium malzemeler ve yenilikçi tasarımlarla banyonuzu sanatsal bir yaşam alanına dönüştürün"
+        },
+        {
+          "title": "Lüks Vitrifiye Ürünleri",
+          "subtitle": "En seçkin markaların en yeni koleksiyonları Kumrular Seramik'te"
+        },
+        {
+          "title": "Profesyonel Çözümler",
+          "subtitle": "38 yıllık tecrübemizle hayalinizdeki banyoyu tasarlıyoruz"
+        }
+      ],
+      "buttons": {
+        "explore": "Koleksiyonları Keşfedin",
+        "appointment": "Randevu Alın"
+      }
+    },
+    "navbar": {
+      "menu": {
+        "open": "Menüyü Aç",
+        "close": "Menüyü Kapat"
+      }
+    },
+    "pagination": {
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "page": "Sayfa"
+    },
+    "productCategories": {
+      "title": "Ürün Kategorilerimiz",
+      "subtitle": "Modern tasarım ve yenilikçi teknolojilerle donatılmış geniş ürün yelpazemizi keşfedin",
+      "explore": "HEMEN KEŞFET"
+    },
+    "productFilters": {
+      "title": "Filtreler",
+      "clearAll": "Filtreleri Temizle",
+      "categories": "Kategoriler",
+      "brands": "Markalar",
+      "technicalProperties": "Teknik Özellikler",
+      "noResults": "Sonuç bulunamadı"
+    },
+    "whyUs": {
+      "title": "Neden Kumrular Seraamik?",
+      "features": {
+        "experience": {
+          "title": "38 Yıllık Deneyim",
+          "description": "1985'ten beri İstanbul'da banyo ve seramik sektörünün öncü firmalarından biri olarak hizmet veriyoruz."
+        },
+        "brands": {
+          "title": "Premium Markalar",
+          "description": "VitrA, Artema, ECA, Kale, Serel gibi sektörün lider markalarının yetkili satıcısıyız."
+        },
+        "service": {
+          "title": "Profesyonel Hizmet",
+          "description": "Uzman ekibimizle projelendirme ve uygulama desteği sağlıyoruz."
+        }
+      },
+      "shipping": {
+        "title": "Uluslararası Teslimat",
+        "description": "FOB, CIF ve EXW teslim şartlarıyla dünya genelinde güvenli ve hızlı teslimat hizmeti sunuyoruz.",
+        "features": [
+          "Uluslararası standartlara uygun paketleme",
+          "Gümrük ve dokümantasyon desteği",
+          "Konteyner ve parsiyel yükleme seçenekleri"
+        ]
+      }
+    }
+  },
+  "common": {
+    "buttons": {
+      "explore": "KEŞFET",
+      "details": "Detaylı Bilgi",
+      "contact": "İletişime Geç",
+      "call": "Hemen Arayın",
+      "email": "E-posta Gönderin",
+      "officialWebsite": "Resmi Web Sitesi"
+    },
+    "features": {
+      "title": "Özellikler",
+      "products": "Ürünler"
+    },
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "notFound": "Bulunamadı",
+    "moreCategories": "+{{count}} daha fazla"
+  }
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Brand } from "../types/brand";
@@ -8,6 +9,7 @@ interface BrandCardProps {
 }
 
 export default function BrandCard({ brand }: BrandCardProps) {
+  const { t } = useTranslation();
   const brandSlug = turkishToAscii(brand.id.toLowerCase());
 
   return (
@@ -43,7 +45,9 @@ export default function BrandCard({ brand }: BrandCardProps) {
           ))}
           {brand.categories.length > 3 && (
             <div className="text-sm text-primary-600">
-              +{brand.categories.length - 3} daha fazla kategori
+              {t("common:moreCategories", {
+                count: brand.categories.length - 3,
+              })}
             </div>
           )}
         </div>
@@ -52,7 +56,7 @@ export default function BrandCard({ brand }: BrandCardProps) {
           to={`/markalar/${brandSlug}`}
           className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
         >
-          Detaylı Bilgi <ArrowRight className="ml-2 w-4 h-4" />
+          {t("common:buttons.details")} <ArrowRight className="ml-2 w-4 h-4" />
         </Link>
       </div>
     </div>
